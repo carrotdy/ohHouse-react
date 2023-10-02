@@ -16,16 +16,14 @@ const 회사소개: React.FunctionComponent = () => {
                     <Title>오늘의 발견,<br />일상의 변화</Title>
                     <SubTitle>우리는 공간과 일상을 경험하는 방식을 새롭게 정의합니다.<br />모두의 라이프스타일에 영감을 줄 수 있도록 끊임없이 기술을 혁신하고,<br />모두가 자신의 공간, 나아가 삶을 사랑하게 만드는 유례없는 도전을 하고 있습니다.</SubTitle>
                     <IntroduceDetailContainer>
-                        <IntroduceDetail>
-                            <IntroductionCompanyDetailContainer>
-                                <ContentImage src={IntroContentsPNG} />
-                                <DetailTitleContainer>
-                                    <Title>공간을 꾸미는 유저들의 사례가<br />가득한 콘텐츠</Title>
-                                    <SubTitle>온라인 집들이와 인테리어 노하우 등<br />다양한 인테리어 콘텐츠들을 제공하여<br />누구나 쉽게 재미있게 공간을 변화시킬 수 있도록 돕습니다.</SubTitle>
-                                </DetailTitleContainer>
-                            </IntroductionCompanyDetailContainer>
-                            <LineBottom />
-                        </IntroduceDetail>
+                        <IntroductionCompanyDetailContainer>
+                            <ContentImage src={IntroContentsPNG} />
+                            <DetailTitleContainer>
+                                <Title>공간을 꾸미는 유저들의 사례가<br />가득한 콘텐츠</Title>
+                                <SubTitle>온라인 집들이와 인테리어 노하우 등<br />다양한 인테리어 콘텐츠들을 제공하여<br />누구나 쉽게 재미있게 공간을 변화시킬 수 있도록 돕습니다.</SubTitle>
+                            </DetailTitleContainer>
+                        </IntroductionCompanyDetailContainer>
+                        <LineBottom />
                     </IntroduceDetailContainer>
                 </IntroduceCompany>
             </IntroduceCompanyContainer>
@@ -44,7 +42,6 @@ const IntroduceCompanyContainer = styled.div({
 })
 
 const IntroduceCompany = styled.div({
-    maxWidth: "1400px",
     margin: "0px 135px",
     ...Tablet({
         margin: "0px",
@@ -63,7 +60,7 @@ const IntroductionCompanyDetailContainer = styled.div({
     ...Mobile({
         display: "grid",
         justifyContent: "center",
-        padding: "50px 0",
+        padding: "30px 0",
     }),
 })
 
@@ -73,20 +70,15 @@ const IntroduceDetailContainer = styled.div({
     }),
 })
 
-const IntroduceDetail = styled.div({
-    maxWidth: "1400px",
-    margin: "auto",
-})
-
 const DetailTitleContainer = styled.div({
     ...Mobile({
-        padding: "0",
+        placeSelf: "center",
     }),
 })
 
 const LineBottom = styled.div({
     width: "100%",
-    border: "1px solid #E1E4E6",
+    border: `1px solid ${Color.Gray30}`,
 })
 
 const ContentImage = styled.img({
@@ -108,13 +100,12 @@ const ContentImage = styled.img({
 
 const Title = styled.div({
     color: Color.Gray80,
-    fontSize: "32px",
+    fontSize: "28px",
     fontWeight: "700",
-    lineHeight: "44px",
+    lineHeight: "40px",
     display: "inlineBlock",
     marginRight: "10px",
     ...Tablet({
-        fontSize: "28px",
         lineHeight: "38px",
         marginTop: "30px",
     }),
