@@ -1,25 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import Main from './views/Main';
+import { Layout } from './views/layouts/Layout';
 
-function App() {
+const App: React.FC = () => {
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const minWidth = isMobile ? {} : { minWidth: 1440 }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Layout {...minWidth}>
+        <Main />
+      </Layout>
+    </BrowserRouter>
   );
 }
 
