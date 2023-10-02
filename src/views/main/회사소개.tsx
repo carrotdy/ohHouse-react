@@ -14,14 +14,14 @@ const 회사소개: React.FunctionComponent = () => {
             <IntroduceCompanyContainer>
                 <IntroduceCompany>
                     <Title>오늘의 발견,<br />일상의 변화</Title>
-                    <SubTitle>우리는 공간과 일상을 경험하는 방식을 새롭게 정의합니다.<br />모두의 라이프스타일에 영감을 줄 수 있도록 끊임없이 기술을 혁신하고, 모두가 자신의 공간, 나아가 삶을 사랑하게 만드는 유례없는 도전을 하고 있습니다.</SubTitle>
+                    <SubTitle>우리는 공간과 일상을 경험하는 방식을 새롭게 정의합니다.<br />모두의 라이프스타일에 영감을 줄 수 있도록 끊임없이 기술을 혁신하고,<br />모두가 자신의 공간, 나아가 삶을 사랑하게 만드는 유례없는 도전을 하고 있습니다.</SubTitle>
                     <IntroduceDetailContainer>
                         <IntroduceDetail>
                             <IntroductionCompanyDetailContainer>
                                 <ContentImage src={IntroContentsPNG} />
                                 <DetailTitleContainer>
                                     <Title>공간을 꾸미는 유저들의 사례가<br />가득한 콘텐츠</Title>
-                                    <SubTitle>온라인 집들이와 인테리어 노하우 등 다양한 인테리어 콘텐츠들을<br />제공하여 누구나 쉽게 재미있게 공간을 변화시킬 수 있도록 돕습니다.</SubTitle>
+                                    <SubTitle>온라인 집들이와 인테리어 노하우 등<br />다양한 인테리어 콘텐츠들을 제공하여<br />누구나 쉽게 재미있게 공간을 변화시킬 수 있도록 돕습니다.</SubTitle>
                                 </DetailTitleContainer>
                             </IntroductionCompanyDetailContainer>
                             <LineBottom />
@@ -33,36 +33,37 @@ const 회사소개: React.FunctionComponent = () => {
     );
 };
 
-export default 회사소개;
-
 const IntroduceCompanyContainer = styled.div({
     paddingTop: "150px",
     ...Tablet({
-        padding: "100px 65px",
+        padding: "100px 65px 0 65px",
     }),
     ...Mobile({
-        padding: "80px 20px"
+        padding: "80px 20px 0 20px",
     }),
 })
 
 const IntroduceCompany = styled.div({
     maxWidth: "1400px",
-    margin: "0px 135px"
+    margin: "0px 135px",
+    ...Tablet({
+        margin: "0px",
+    }),
 })
 
 const IntroductionCompanyDetailContainer = styled.div({
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
     padding: "100px 0",
     ...Tablet({
         display: "grid",
         justifyContent: "center",
+        padding: "60px 0",
     }),
     ...Mobile({
         display: "grid",
         justifyContent: "center",
-        padding: "80px 0",
+        padding: "50px 0",
     }),
 })
 
@@ -92,13 +93,16 @@ const ContentImage = styled.img({
     backgroundColor: "pink",
     width: "460px",
     height: "320px",
+    marginRight: "60px",
     ...Tablet({
-        width: "auto",
-        height: "570px",
+        width: "520px",
+        height: "360px",
+        marginRight: 0,
     }),
     ...Mobile({
-        width: "auto",
-        height: "370px",
+        width: "350px",
+        height: "243px",
+        marginRight: 0,
     }),
 })
 
@@ -112,6 +116,7 @@ const Title = styled.div({
     ...Tablet({
         fontSize: "28px",
         lineHeight: "38px",
+        marginTop: "30px",
     }),
     ...Mobile({
         fontSize: "18px",
@@ -124,10 +129,10 @@ const SubTitle = styled.div({
     fontWeight: "400",
     lineHeight: "26px",
     margin: "20px 0",
-    width: "497px",
     ...Mobile({
-        width: "300px",
-        fontSize: "14px",
-        lineHeight: "22px",
+        fontSize: "12px",
+        lineHeight: "20px",
     }),
 })
+
+export default 회사소개;
