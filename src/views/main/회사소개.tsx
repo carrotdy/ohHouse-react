@@ -6,13 +6,13 @@ import {
     Mobile,
     Tablet
 } from "../utils/CssUtil";
+import { BorderBottomLine, Container } from "../styles/Common";
 
 const 회사소개: React.FunctionComponent = () => {
-
     return (
         <>
-            <IntroduceCompanyContainer>
-                <Title>오늘의 발견,<br />일상의 변화</Title>
+            <Container>
+                <Title>오늘의 발견,일상의 변화</Title>
                 <SubTitle>우리는 공간과 일상을 경험하는 방식을 새롭게 정의합니다.<br />모두의 라이프스타일에 영감을 줄 수 있도록 끊임없이 기술을 혁신하고,<br />모두가 자신의 공간, 나아가 삶을 사랑하게 만드는 유례없는 도전을 하고 있습니다.</SubTitle>
                 {IntroduceCompany.map((item) => {
                     return (
@@ -24,24 +24,14 @@ const 회사소개: React.FunctionComponent = () => {
                                     <SubTitle>{item.description}</SubTitle>
                                 </DetailTitleContainer>
                             </IntroductionCompanyDetailContainer>
-                            <LineBottom />
+                            <BorderBottomLine />
                         </div>
                     )
                 })}
-            </IntroduceCompanyContainer>
+            </Container>
         </>
     );
 };
-
-const IntroduceCompanyContainer = styled.div({
-    padding: "150px 100px 0 100px",
-    ...Tablet({
-        padding: "100px 65px 0 65px",
-    }),
-    ...Mobile({
-        padding: "80px 20px 0 20px",
-    }),
-})
 
 const IntroductionCompanyDetailContainer = styled.div({
     display: "flex",
@@ -59,11 +49,6 @@ const IntroductionCompanyDetailContainer = styled.div({
 })
 
 const DetailTitleContainer = styled.div({})
-
-const LineBottom = styled.div({
-    width: "100%",
-    border: `1px solid ${Color.Gray30}`,
-})
 
 const ContentImage = styled.img({
     width: "460px",
@@ -93,7 +78,7 @@ const Title = styled.div({
         marginTop: "30px",
     }),
     ...Mobile({
-        fontSize: "18px",
+        fontSize: "20px",
         lineHeight: "26px",
     }),
 })

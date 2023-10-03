@@ -1,0 +1,79 @@
+.team-culture-content-container {
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    text-align: center;
+
+    div {
+        width: 50%;
+        margin-bottom: 50px;
+
+        h1 {
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 40px;
+            border: 1px solid black;
+            border-radius: 50px;
+        }
+
+        &:hover {
+            h1 {
+                background: orange;
+                border-color: orange;
+                color: white;
+                transition: 0.5s;
+            }
+        }
+
+        .team-culture-content {
+            line-height: 26px;
+            font-size: 14px;
+            margin: auto;
+        }
+    }
+}
+
+// tablet
+@media (min-width: 576px) and (max-width: 1200px) {
+    .team-culture-content-container {
+        display: grid;
+        justify-content: center;
+
+        div {
+            width: 100%;
+        }
+    }
+}
+
+// mobile
+@media (max-width: 575px) {
+    .team-culture-content-container {
+        display: grid;
+        justify-content: center;
+
+        div {
+            width: 100%;
+
+            h1 {
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+                line-height: 30px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            .team-culture-content {
+                line-height: 22px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+

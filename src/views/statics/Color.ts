@@ -34,5 +34,7 @@ export enum Color {
     Yellow90 = '#7A6300',
     Yellow100 = '#5F4C00',
 
+    Orange = '#FFBB00',
+
     Red100 = '#FF5D5D',
 }
