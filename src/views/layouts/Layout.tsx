@@ -8,7 +8,6 @@ interface IProps {
 }
 
 export const Layout: FunctionComponent<IProps> = (props: IProps) => {
-    console.log("props", props.children)
     return (
         <>
             <Navbar />

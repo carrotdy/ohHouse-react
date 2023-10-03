@@ -1,38 +1,40 @@
 import React from "react";
 import styled from "styled-components";
+import { Color } from "../statics/Color";
+import { IntroduceCompany } from "../statics/constants/IntroduceCompany";
 import {
     Mobile,
     Tablet
 } from "../utils/CssUtil";
-import { Color } from "../statics/Color";
-import { IntroContentsPNG } from "../images";
 
 const 회사소개: React.FunctionComponent = () => {
 
     return (
         <>
             <IntroduceCompanyContainer>
-                <IntroduceCompany>
-                    <Title>오늘의 발견,<br />일상의 변화</Title>
-                    <SubTitle>우리는 공간과 일상을 경험하는 방식을 새롭게 정의합니다.<br />모두의 라이프스타일에 영감을 줄 수 있도록 끊임없이 기술을 혁신하고,<br />모두가 자신의 공간, 나아가 삶을 사랑하게 만드는 유례없는 도전을 하고 있습니다.</SubTitle>
-                    <IntroduceDetailContainer>
-                        <IntroductionCompanyDetailContainer>
-                            <ContentImage src={IntroContentsPNG} />
-                            <DetailTitleContainer>
-                                <Title>공간을 꾸미는 유저들의 사례가<br />가득한 콘텐츠</Title>
-                                <SubTitle>온라인 집들이와 인테리어 노하우 등<br />다양한 인테리어 콘텐츠들을 제공하여<br />누구나 쉽게 재미있게 공간을 변화시킬 수 있도록 돕습니다.</SubTitle>
-                            </DetailTitleContainer>
-                        </IntroductionCompanyDetailContainer>
-                        <LineBottom />
-                    </IntroduceDetailContainer>
-                </IntroduceCompany>
+                <Title>오늘의 발견,<br />일상의 변화</Title>
+                <SubTitle>우리는 공간과 일상을 경험하는 방식을 새롭게 정의합니다.<br />모두의 라이프스타일에 영감을 줄 수 있도록 끊임없이 기술을 혁신하고,<br />모두가 자신의 공간, 나아가 삶을 사랑하게 만드는 유례없는 도전을 하고 있습니다.</SubTitle>
+                {IntroduceCompany.map((item) => {
+                    return (
+                        <div key={item.index}>
+                            <IntroductionCompanyDetailContainer style={{ whiteSpace: "pre-line" }}>
+                                <ContentImage src={item.image} />
+                                <DetailTitleContainer>
+                                    <Title>{item.title}</Title>
+                                    <SubTitle>{item.description}</SubTitle>
+                                </DetailTitleContainer>
+                            </IntroductionCompanyDetailContainer>
+                            <LineBottom />
+                        </div>
+                    )
+                })}
             </IntroduceCompanyContainer>
         </>
     );
 };
 
 const IntroduceCompanyContainer = styled.div({
-    paddingTop: "150px",
+    padding: "150px 100px 0 100px",
     ...Tablet({
         padding: "100px 65px 0 65px",
     }),
@@ -41,40 +43,22 @@ const IntroduceCompanyContainer = styled.div({
     }),
 })
 
-const IntroduceCompany = styled.div({
-    margin: "0px 135px",
-    ...Tablet({
-        margin: "0px",
-    }),
-})
-
 const IntroductionCompanyDetailContainer = styled.div({
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     padding: "100px 0",
     ...Tablet({
         display: "grid",
-        justifyContent: "center",
         padding: "60px 0",
     }),
     ...Mobile({
         display: "grid",
-        justifyContent: "center",
         padding: "30px 0",
     }),
 })
 
-const IntroduceDetailContainer = styled.div({
-    ...Tablet({
-        padding: "0 20px",
-    }),
-})
-
-const DetailTitleContainer = styled.div({
-    ...Mobile({
-        placeSelf: "center",
-    }),
-})
+const DetailTitleContainer = styled.div({})
 
 const LineBottom = styled.div({
     width: "100%",
@@ -82,7 +66,6 @@ const LineBottom = styled.div({
 })
 
 const ContentImage = styled.img({
-    backgroundColor: "pink",
     width: "460px",
     height: "320px",
     marginRight: "60px",

@@ -10,10 +10,10 @@ const Navbar = () => {
             <Nav>
                 <Logo src={MainLogoPNG} />
                 <NavItemsContainer>
-                    <StyeldLink to="/views/ceoGreeting">회사소개</StyeldLink>
-                    <StyeldLink to="/views/ceoGreeting">팀문화</StyeldLink>
-                    <StyeldLink to="/views/ceoGreeting">채용</StyeldLink>
-                    <StyeldLink to="/views/ceoGreeting">사람들</StyeldLink>
+                    <StyeldLink to="/">회사소개</StyeldLink>
+                    <StyeldLink to="/views/team-culture">팀문화</StyeldLink>
+                    <StyeldLink to="/views/careers">채용</StyeldLink>
+                    <StyeldLink to="/views/people">사람들</StyeldLink>
                 </NavItemsContainer>
             </Nav>
         </NavContainer>
@@ -26,7 +26,7 @@ const Nav = styled.div({
     height: "85px",
     maxWidth: "1400px",
     margin: "auto",
-    padding: "0 135px",
+    padding: "0 100px",
     ...Tablet({
         padding: "0 65px",
     }),
