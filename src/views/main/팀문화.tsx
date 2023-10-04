@@ -1,11 +1,7 @@
 import { useMemo } from "react";
-import styled from "styled-components";
 import { EmploymentModel } from "../model/EmploymentModel";
 import { TeamCultureData } from "../statics/constants/TeamCultureData";
-import { BorderBottomLine, Container } from "../styles/Common";
-import {
-    Mobile
-} from "../utils/CssUtil";
+import { BorderBottomLineGray30, Container, Title } from "../components/Common";
 
 const 팀문화: React.FunctionComponent = () => {
     const data: Array<EmploymentModel.IEmploymentModel> = useMemo(() => {
@@ -14,7 +10,7 @@ const 팀문화: React.FunctionComponent = () => {
 
     return (
         <Container>
-            <Title>더 나은 오늘을 만들어 가는 당신을<br />아낌없이 지원합니다</Title>
+            <Title style={{ textAlign: "center", marginBottom: "30px" }}>더 나은 오늘을 만들어 가는 당신을<br />아낌없이 지원합니다</Title>
             <div className="team-culture-content-container">
                 {data.map((data, i) => {
                     return (
@@ -31,22 +27,9 @@ const 팀문화: React.FunctionComponent = () => {
                     );
                 })}
             </div>
-            <BorderBottomLine />
+            <BorderBottomLineGray30 />
         </Container>
     );
 };
-
-const Title = styled.div({
-    textAlign: "center",
-    fontSize: "28px",
-    fontWeight: "bold",
-    margin: "30px 0",
-
-    ...Mobile({
-        fontSize: "20px"
-    }),
-})
-
-
 
 export default 팀문화;

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Color } from "../statics/Color";
+import Button from "../components/Button";
 
 export const NotFoundPage = () => {
     const navigate = useNavigate();
@@ -9,18 +10,16 @@ export const NotFoundPage = () => {
         <div style={{ textAlign: "center", marginTop: "300px" }}>
             <h1>404</h1>
             <h4>This Page Could Not Be Found</h4>
-            <BackButton onClick={() => navigate(-1)}>
-                go back
-            </BackButton>
+            <Button
+                text={`go back`}
+                type={"primary"}
+                size={"small"}
+                width={80}
+                onClick={() => {
+                    navigate(-1)
+                }}
+                margin={"auto"}
+            />
         </div>
     );
 };
-
-const BackButton = styled.button({
-    width: "80px",
-    margin: "auto",
-    backgroundColor: Color.Gray10,
-    borderColor: Color.Gray40,
-    borderRadius: 4,
-    padding: "10px 0"
-})

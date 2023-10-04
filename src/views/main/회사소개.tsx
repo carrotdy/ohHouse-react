@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Color } from "../statics/Color";
 import { IntroduceCompany } from "../statics/constants/IntroduceCompany";
+import { BorderBottomLineGray30, Container, SubTitle, Title } from "../components/Common";
 import {
     Mobile,
     Tablet
 } from "../utils/CssUtil";
-import { BorderBottomLine, Container } from "../styles/Common";
 
 const 회사소개: React.FunctionComponent = () => {
     return (
@@ -24,7 +23,7 @@ const 회사소개: React.FunctionComponent = () => {
                                     <SubTitle>{item.description}</SubTitle>
                                 </DetailTitleContainer>
                             </IntroductionCompanyDetailContainer>
-                            <BorderBottomLine />
+                            <BorderBottomLineGray30 />
                         </div>
                     )
                 })}
@@ -63,34 +62,6 @@ const ContentImage = styled.img({
         width: "350px",
         height: "243px",
         marginRight: 0,
-    }),
-})
-
-const Title = styled.div({
-    color: Color.Gray80,
-    fontSize: "28px",
-    fontWeight: "700",
-    lineHeight: "40px",
-    display: "inlineBlock",
-    marginRight: "10px",
-    ...Tablet({
-        lineHeight: "38px",
-        marginTop: "30px",
-    }),
-    ...Mobile({
-        fontSize: "20px",
-        lineHeight: "26px",
-    }),
-})
-
-const SubTitle = styled.div({
-    fontSize: "16px",
-    fontWeight: "400",
-    lineHeight: "26px",
-    margin: "20px 0",
-    ...Mobile({
-        fontSize: "12px",
-        lineHeight: "20px",
     }),
 })
 
