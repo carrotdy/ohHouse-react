@@ -1,6 +1,6 @@
 # react-homepage
 
-쇼핑모아 홈페이지
+react 쇼핑모아 홈페이지
 
 # Build
 
