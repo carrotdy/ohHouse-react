@@ -2,6 +2,9 @@
 * {
     font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
-@import "./teamCulture.scss";
-@import "./color.scss";
+
+@import "./Common.scss";
+
+@import "../teamCulture.scss";
+@import "../Button.scss";
 

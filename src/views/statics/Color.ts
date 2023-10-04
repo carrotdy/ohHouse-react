@@ -36,5 +36,8 @@ export enum Color {
 
     Orange = '#FFBB00',
 
-    Red100 = '#FF5D5D',
+    Red80 = '#FF5D5D',
+    Red100 = '#ca2032',
+
+    shadow = 'rgba(0, 0, 0, 0.4)',
 }

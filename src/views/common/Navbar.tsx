@@ -1,14 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { MainLogoPNG } from '../images';
 import { Color } from '../statics/Color';
 import { Mobile, Tablet } from '../utils/CssUtil';
+import { RoutePath } from "../RoutePath";
 
 const Navbar = () => {
+    const navigate = useNavigate();
+
     return (
         <NavContainer>
             <Nav>
-                <Logo src={MainLogoPNG} />
+                <Logo
+                    src={MainLogoPNG}
+                    onClick={() => {
+                        navigate(RoutePath.회사소개.path)
+                    }}
+                />
                 <NavItemsContainer>
                     <StyeldLink to="/">회사소개</StyeldLink>
                     <StyeldLink to="/views/team-culture">팀문화</StyeldLink>
@@ -49,9 +57,9 @@ const NavItemsContainer = styled.div({
 });
 
 const StyeldLink = styled(Link)({
-    fontSize: "15px",
-    fontWeight: "700",
-    marginLeft: "60px",
+    fontSize: "16px",
+    fontWeight: "bold",
+    marginLeft: "54px",
     cursor: "pointer",
     color: Color.Gray80,
     textDecorationLine: "none",
