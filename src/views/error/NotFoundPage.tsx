@@ -1,6 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { Color } from "../statics/Color";
 import Button from "../components/Button";
 
 export const NotFoundPage = () => {
@@ -15,9 +13,7 @@ export const NotFoundPage = () => {
                 type={"primary"}
                 size={"small"}
                 width={80}
-                onClick={() => {
-                    navigate(-1)
-                }}
+                onClick={() => { navigate(-1) }}
                 margin={"auto"}
             />
         </div>
