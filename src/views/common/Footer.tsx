@@ -4,7 +4,6 @@ import {
     Mobile,
     Tablet
 } from "../utils/CssUtil";
-import { Color } from "../statics/Color";
 
 export const Footer: React.FunctionComponent = () => {
 
