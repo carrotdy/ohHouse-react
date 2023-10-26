@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { IntroduceCompany } from "../statics/constants/IntroduceCompany";
 import { BorderBottomLineGray30, Container, SubTitle, Title } from "../components/Common";
 import {
     Mobile,
     Tablet
 } from "../utils/CssUtil";
+import IntroduceCompany from "../statics/constants/IntroduceCompany";
 
 const 회사소개: React.FunctionComponent = () => {
     return (
@@ -13,9 +13,9 @@ const 회사소개: React.FunctionComponent = () => {
             <Container>
                 <Title>오늘의 발견,일상의 변화</Title>
                 <SubTitle>우리는 공간과 일상을 경험하는 방식을 새롭게 정의합니다.<br />모두의 라이프스타일에 영감을 줄 수 있도록 끊임없이 기술을 혁신하고,<br />모두가 자신의 공간, 나아가 삶을 사랑하게 만드는 유례없는 도전을 하고 있습니다.</SubTitle>
-                {IntroduceCompany.map((item) => {
+                {IntroduceCompany.map((item, index) => {
                     return (
-                        <div key={item.index}>
+                        <div key={`${item.index} + ${index}`}>
                             <IntroductionCompanyDetailContainer style={{ whiteSpace: "pre-line" }}>
                                 <ContentImage src={item.image} />
                                 <DetailTitleContainer>

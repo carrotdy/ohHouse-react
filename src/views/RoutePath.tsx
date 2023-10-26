@@ -2,7 +2,7 @@ import 채용 from "./main/채용";
 import 팀문화 from "./main/팀문화";
 import 회사소개 from "./main/회사소개";
 import 채용상세 from "./main/채용_상세";
-import 사람들 from "./main/사람들";
+import 복지몰 from "./main/복지몰";
 
 export class RoutePath {
     static readonly 회사소개 = {
@@ -21,8 +21,8 @@ export class RoutePath {
         path: "/views/careerDetail",
         element: <채용상세 />
     };
-    static readonly 사람들 = {
-        path: "/views/people",
-        element: <사람들 />
+    static readonly 복지몰 = {
+        path: "/views/welfare",
+        element: <복지몰 />
     };
 }

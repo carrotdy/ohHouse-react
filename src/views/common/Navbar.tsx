@@ -21,7 +21,7 @@ const Navbar = () => {
                     <StyeldLink to="/">회사소개</StyeldLink>
                     <StyeldLink to="/views/team-culture">팀문화</StyeldLink>
                     <StyeldLink to="/views/careers">채용</StyeldLink>
-                    <StyeldLink to="/views/people">사람들</StyeldLink>
+                    <StyeldLink to="/views/welfare">복지몰</StyeldLink>
                 </NavItemsContainer>
             </Nav>
         </NavContainer>

@@ -1,6 +1,6 @@
 import { EmploymentModel } from "../../model/EmploymentModel";
 
-export const TeamCultureData: Array<EmploymentModel.IEmploymentModel> = [
+const TeamCultureData: Array<EmploymentModel.IEmploymentModel> = [
     {
         id: 1,
         title: "몰입과 성장을 위한 최적의 근무환경",
@@ -22,3 +22,5 @@ export const TeamCultureData: Array<EmploymentModel.IEmploymentModel> = [
         content: "오늘의집 꾸미기 지원금 연 150만원 지원<br/>오늘의집 VIP 회원 승급",
     },
 ];
+
+export default TeamCultureData
