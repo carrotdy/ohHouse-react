@@ -1,7 +1,7 @@
 import { useMemo } from "react";
-import { EmploymentModel } from "../model/EmploymentModel";
-import { TeamCultureData } from "../statics/constants/TeamCultureData";
 import { BorderBottomLineGray30, Container, Title } from "../components/Common";
+import { EmploymentModel } from "../model/EmploymentModel";
+import TeamCultureData from "../statics/constants/TeamCultureData";
 
 const 팀문화: React.FunctionComponent = () => {
     const data: Array<EmploymentModel.IEmploymentModel> = useMemo(() => {

@@ -9,7 +9,7 @@ const Main = () => {
             <Route path={RoutePath.팀문화.path} element={RoutePath.팀문화.element} />
             <Route path={RoutePath.채용.path} element={RoutePath.채용.element} />
             <Route path={RoutePath.채용상세.path} element={RoutePath.채용상세.element} />
-            <Route path={RoutePath.사람들.path} element={RoutePath.사람들.element} />
+            <Route path={RoutePath.복지몰.path} element={RoutePath.복지몰.element} />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
     );
