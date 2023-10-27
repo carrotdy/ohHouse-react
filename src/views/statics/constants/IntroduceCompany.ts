@@ -1,4 +1,4 @@
-import { CommunityPNG, IntroContentsPNG, ServicePNG, StorePNG } from "../../images";
+import { CommunityPNG, IntroContentsPNG, ServicePNG, StorePNG } from "../../images/png";
 import { CompanyModel } from "../../model/CompanyModel";
 
 const IntroduceCompany: Array<CompanyModel.ICompanyModel> = [
