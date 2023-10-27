@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
-import { MainLogoPNG } from '../images';
+import { MainLogoPNG } from '../images/png';
 import { Color } from '../statics/Color';
 import { Mobile, Tablet } from '../utils/CssUtil';
 import { RoutePath } from "../RoutePath";

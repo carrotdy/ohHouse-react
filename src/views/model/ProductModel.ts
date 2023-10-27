@@ -4,5 +4,6 @@ export namespace ProductModel {
         point: number;
         company: string;
         title: string;
+        image: string;
     }
 }
