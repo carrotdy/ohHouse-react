@@ -19,7 +19,7 @@ export const Footer: React.FunctionComponent = () => {
 const FooterContainer = styled.footer({
     margin: "50px 100px",
     ...Tablet({
-        margin: "50px 65px",
+        margin: "50px 45px",
     }),
     ...Mobile({
         margin: "50px 20px",
