@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Button from "../components/Button";
 import { ProductModel } from "../model/ProductModel";
 import { Color } from "../statics/Color";
+import { useRecoilState } from "recoil";
+import { CartState } from "../hooks/CartRecoil";
 
 interface IProps {
   data: ProductModel.IProductModel;
@@ -11,9 +13,13 @@ interface IProps {
 const 복지몰_상품: React.FC<IProps> = ({ data, index }) => {
   const { point, company, title, image } = data;
 
-  const onClick = () => {
+  const [cartItem, setCartItem] = useRecoilState(CartState);
 
-  }
+  const handleClickAddCart = () => {
+    setCartItem((prev) => [...prev, data]);
+  };
+
+  const isAlreadyCart = cartItem.some((item) => item.id === data.id);
 
   return (
     <Wrapper>
@@ -23,12 +29,13 @@ const 복지몰_상품: React.FC<IProps> = ({ data, index }) => {
       </Badge>
       <Company>{company}</Company>
       <CompanyTitle>{title}</CompanyTitle>
-      <CompanyPoint>{point}</CompanyPoint>
+      <CompanyPoint>{`${point.toLocaleString()} 원`}</CompanyPoint>
       <Button
-        text={`장바구니`}
+        text={isAlreadyCart ? "장바구니 완료" : "장바구니 추가"}
         type={"primary"}
         size={"small"}
-        onClick={onClick}
+        onClick={handleClickAddCart}
+        disabled={isAlreadyCart}
       />
     </Wrapper>
   );
@@ -63,7 +70,7 @@ const CompanyTitle = styled.div({
 });
 
 const CompanyPoint = styled.div({
-  margin: "2px 0 10px 0"
-})
+  margin: "2px 0 10px 0",
+});
 
 export default 복지몰_상품;
