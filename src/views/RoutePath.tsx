@@ -3,6 +3,7 @@ import 팀문화 from "./main/팀문화";
 import 회사소개 from "./main/회사소개";
 import 채용상세 from "./main/채용_상세";
 import 복지몰 from "./main/복지몰";
+import 장바구니 from "./main/장바구니";
 
 export class RoutePath {
     static readonly 회사소개 = {
@@ -24,5 +25,9 @@ export class RoutePath {
     static readonly 복지몰 = {
         path: "/views/welfare",
         element: <복지몰 />
+    };
+    static readonly 장바구니 = {
+        path: "/views/cart",
+        element: <장바구니 />
     };
 }
