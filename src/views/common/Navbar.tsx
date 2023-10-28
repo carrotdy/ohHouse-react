@@ -22,6 +22,7 @@ const Navbar = () => {
                     <StyeldLink to="/views/team-culture">팀문화</StyeldLink>
                     <StyeldLink to="/views/careers">채용</StyeldLink>
                     <StyeldLink to="/views/welfare">복지몰</StyeldLink>
+                    <StyeldLink to="/views/cart">장바구니</StyeldLink>
                 </NavItemsContainer>
             </Nav>
         </NavContainer>
@@ -36,7 +37,7 @@ const Nav = styled.div({
     margin: "auto",
     padding: "0 100px",
     ...Tablet({
-        padding: "0 65px",
+        padding: "0 45px",
     }),
     ...Mobile({
         padding: "0 20px",
@@ -59,7 +60,7 @@ const NavItemsContainer = styled.div({
 const StyeldLink = styled(Link)({
     fontSize: "16px",
     fontWeight: "bold",
-    marginLeft: "54px",
+    marginLeft: "32px",
     cursor: "pointer",
     color: Color.Gray80,
     textDecorationLine: "none",
