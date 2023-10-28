@@ -46,10 +46,10 @@ const Nav = styled.div({
 })
 
 const NavContainer = styled.div({
-    position: "absolute",
+    position: "fixed",
     width: "100%",
     zIndex: 10,
-    color: Color.Gray10,
+    backgroundColor: Color.Gray10,
 })
 
 const NavItemsContainer = styled.div({
@@ -65,8 +65,8 @@ const StyeldLink = styled(Link)({
     color: Color.Gray80,
     textDecorationLine: "none",
     ...Mobile({
-        fontSize: "12px",
-        marginLeft: "12px",
+        fontSize: "10px",
+        marginLeft: "10px",
     })
 });
 
@@ -76,8 +76,8 @@ const Logo = styled.img({
     alignSelf: "center",
     cursor: "pointer",
     ...Mobile({
-        width: "130px",
-        height: "32px",
+        width: "100px",
+        height: "24px",
     })
 });
 
