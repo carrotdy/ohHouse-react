@@ -6,7 +6,7 @@ export const CartState = atom<Array<ProductModel.IProductModel>>({
 	default: []
 })
 
-export const CartTotalCountState = selector({
+export const CartTotalCountState = selector<number>({
 	key: 'cartTotalCountState',
 	get: ({ get }) => {
 		const cart = get(CartState);
@@ -14,7 +14,7 @@ export const CartTotalCountState = selector({
 	},
 });
 
-export const CartTotalPriceState = selector({
+export const CartTotalPriceState = selector<number>({
 	key: 'cartTotalPriceState',
 	get: ({ get }) => {
 		const cart = get(CartState);

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { MainLogoPNG } from '../images/png';
-import { Color } from '../statics/Color';
+import { Color } from '../constants/style/Color';
 import { Mobile, Tablet } from '../utils/CssUtil';
 import { RoutePath } from "../RoutePath";
 
@@ -9,23 +9,24 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     return (
-        <NavContainer>
-            <Nav>
-                <Logo
-                    src={MainLogoPNG}
-                    onClick={() => {
-                        navigate(RoutePath.회사소개.path)
-                    }}
-                />
-                <NavItemsContainer>
-                    <StyeldLink to="/">회사소개</StyeldLink>
-                    <StyeldLink to="/views/team-culture">팀문화</StyeldLink>
-                    <StyeldLink to="/views/careers">채용</StyeldLink>
-                    <StyeldLink to="/views/welfare">복지몰</StyeldLink>
-                    <StyeldLink to="/views/cart">장바구니</StyeldLink>
-                </NavItemsContainer>
-            </Nav>
-        </NavContainer>
+      <NavContainer>
+        <Nav>
+          <Logo
+            src={MainLogoPNG}
+            onClick={() => {
+              navigate(RoutePath.회사소개.path);
+            }}
+          />
+          <NavItemsContainer>
+            <StyeldLink to="/">회사소개</StyeldLink>
+            <StyeldLink to="/views/team-culture">팀문화</StyeldLink>
+            <StyeldLink to="/views/careers">채용</StyeldLink>
+            <StyeldLink to="/views/welfare">복지몰</StyeldLink>
+            <StyeldLink to="/views/cart">장바구니</StyeldLink>
+            <StyeldLink to="/views/notice">게시판</StyeldLink>
+          </NavItemsContainer>
+        </Nav>
+      </NavContainer>
     );
 };
 
