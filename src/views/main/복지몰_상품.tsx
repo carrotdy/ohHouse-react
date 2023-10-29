@@ -15,7 +15,8 @@ interface IProps {
 const 복지몰_상품: React.FC<IProps> = ({ data, index }) => {
   const { point, company, title, image } = data;
 
-  const [cartItem, setCartItem] = useRecoilState(CartState);
+ const [cartItem, setCartItem] =
+   useRecoilState<Array<ProductModel.IProductModel>>(CartState);
 
   const isAlreadyCart = cartItem.some((item) => item.id === data.id);
 
