@@ -14,7 +14,7 @@ import {
 } from "../components/Common";
 import { db } from "../firebase";
 import { JobPostingModel } from "../model/JobPostingModel";
-import { Color } from "../statics/Color";
+import { Color } from "../constants/style/Color";
 import { Mobile } from "../utils/CssUtil";
 
 const 채용: React.FunctionComponent = () => {

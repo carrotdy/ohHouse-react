@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import Button from "../components/Button";
-import { ProductModel } from "../model/ProductModel";
-import { Color } from "../statics/Color";
-import { useSetRecoilState } from "recoil";
+import { LOCAL_STORAGE_KEY_CART } from "../constants/localstorage/localStorageKeys";
+import { Color } from "../constants/style/Color";
 import { CartState } from "../hooks/CartRecoil";
+import { ProductModel } from "../model/ProductModel";
 
 interface IProduct {
   data: ProductModel.IProductModel;
@@ -13,11 +14,16 @@ interface IProduct {
 const 장바구니_상품: React.FC<IProduct> = ({ data }) => {
   const { id, point, company, title, image } = data;
 
-  const setCartItem = useSetRecoilState(CartState);
+  const [cartItem, setCartItem] =
+    useRecoilState<Array<ProductModel.IProductModel>>(CartState);
 
   const handleClickDelete = () => {
     setCartItem((prev) => prev.filter((e) => e.id !== id));
   };
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY_CART, JSON.stringify(cartItem));
+  }, [cartItem]);
 
   return (
     <div style={{ display: "flex", marginTop: "20px", alignItems: "center" }}>

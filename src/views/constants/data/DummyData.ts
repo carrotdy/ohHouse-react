@@ -1,4 +1,4 @@
-import { ProductModel } from "../model/ProductModel"
+import { ProductModel } from "../../model/ProductModel"
 import { 
     image1,
     image2,
@@ -12,7 +12,7 @@ import {
     image10,
     image11,
     image12,
-} from "../images/png/companyImage"
+} from "../../images/png/companyImage"
 
 const DummyData: Array<ProductModel.IProductModel> = [
     {

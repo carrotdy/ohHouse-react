@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Container, SubTitle, Title } from "../components/Common";
-import DummyData from "../data/DummyData";
+import DummyData from "../constants/data/DummyData";
 import 복지몰_상품 from "./복지몰_상품";
 
 const 복지몰: React.FunctionComponent = () => {
