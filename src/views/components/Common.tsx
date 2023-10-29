@@ -3,7 +3,7 @@ import {
     Mobile,
     Tablet
 } from "../utils/CssUtil";
-import { Color } from "../statics/Color";
+import { Color } from "../constants/style/Color";
 
 const Container = styled.div({
     padding: "150px 100px 0 100px",

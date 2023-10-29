@@ -1,24 +1,34 @@
-import React from "react";
-import { Container, Title } from "../components/Common";
-import { useRecoilValue } from "recoil";
-import {
-  CartState,
-  CartTotalCountState,
-  CartTotalPriceState,
-} from "../hooks/CartRecoil";
-import 장바구니_상품 from "./장바구니_상품";
-import Button from "../components/Button";
-import { useNavigate } from "react-router-dom";
-import { RoutePath } from "../RoutePath";
-import { Color } from "../statics/Color";
-import styled from "styled-components";
 import { isEmpty } from "lodash-es";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import styled from "styled-components";
+import { RoutePath } from "../RoutePath";
+import Button from "../components/Button";
+import { Container, Title } from "../components/Common";
+import { LOCAL_STORAGE_KEY_CART } from "../constants/localstorage/localStorageKeys";
+import { Color } from "../constants/style/Color";
+import {
+	CartState,
+	CartTotalCountState,
+	CartTotalPriceState,
+} from "../hooks/CartRecoil";
+import { ProductModel } from "../model/ProductModel";
+import 장바구니_상품 from "./장바구니_상품";
 
 const 장바구니: React.FunctionComponent = () => {
   const navigate = useNavigate();
-  const cartItem = useRecoilValue(CartState);
-  const totalCount = useRecoilValue(CartTotalCountState);
-  const totalPrice = useRecoilValue(CartTotalPriceState);
+
+  const [cartItem, setCartItem] = useRecoilState<Array<ProductModel.IProductModel>>(CartState);
+  const totalCount = useRecoilValue<number>(CartTotalCountState);
+  const totalPrice = useRecoilValue<number>(CartTotalPriceState);
+
+  useEffect(() => {
+    const data = JSON.parse(
+      localStorage.getItem(LOCAL_STORAGE_KEY_CART) || "[]"
+    );
+    setCartItem(data);
+  }, []);
 
   return (
     <Container>
