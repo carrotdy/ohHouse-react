@@ -1,9 +1,11 @@
-import styled from "styled-components";
-import Button from "../components/Button";
-import { ProductModel } from "../model/ProductModel";
-import { Color } from "../constants/style/Color";
 import { useRecoilState } from "recoil";
+import styled from "styled-components";
+import { Color } from "../constants/style/Color";
 import { CartState } from "../hooks/CartRecoil";
+import { ProductModel } from "../model/ProductModel";
+import { ShoppingCartSVG } from "../images/svg";
+import { useEffect } from "react";
+import { LOCAL_STORAGE_KEY_CART } from "../constants/localstorage/localStorageKeys";
 
 interface IProps {
   data: ProductModel.IProductModel;
@@ -15,11 +17,20 @@ const 복지몰_상품: React.FC<IProps> = ({ data, index }) => {
 
   const [cartItem, setCartItem] = useRecoilState(CartState);
 
+  const isAlreadyCart = cartItem.some((item) => item.id === data.id);
+
   const handleClickAddCart = () => {
-    setCartItem((prev) => [...prev, data]);
+    if (!isAlreadyCart) {
+      setCartItem((prev) => [...prev, data]);
+    }
   };
 
-  const isAlreadyCart = cartItem.some((item) => item.id === data.id);
+  useEffect(() => {
+    const data = JSON.parse(
+      localStorage.getItem(LOCAL_STORAGE_KEY_CART) || "[]"
+    );
+    setCartItem(data);
+  }, []);
 
   return (
     <Wrapper>
@@ -27,16 +38,18 @@ const 복지몰_상품: React.FC<IProps> = ({ data, index }) => {
       <Badge>
         <div>{index + 1}</div>
       </Badge>
+      <div style={{ position: "relative" }}>
+        <ShoppingCartSVG
+          width={28}
+          height={28}
+          fill={isAlreadyCart ? Color.Gray40 : Color.Gray80}
+          onClick={handleClickAddCart}
+          style={{ position: "absolute", bottom: 10, right: 10 }}
+        />
+      </div>
       <Company>{company}</Company>
       <CompanyTitle>{title}</CompanyTitle>
       <CompanyPoint>{`${point.toLocaleString()} 원`}</CompanyPoint>
-      <Button
-        text={isAlreadyCart ? "장바구니 완료" : "장바구니 추가"}
-        type={"primary"}
-        size={"small"}
-        onClick={handleClickAddCart}
-        disabled={isAlreadyCart}
-      />
     </Wrapper>
   );
 };
