@@ -8,7 +8,7 @@ import {
 } from "../components/Common";
 import styled from "styled-components";
 import dayjs from "dayjs";
-import { Color } from "../statics/Color";
+import { Color } from "../constants/style/Color";
 import { Mobile } from "../utils/CssUtil";
 
 const 채용_상세: React.FunctionComponent = () => {

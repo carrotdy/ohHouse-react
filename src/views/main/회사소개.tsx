@@ -5,7 +5,7 @@ import {
     Mobile,
     Tablet
 } from "../utils/CssUtil";
-import IntroduceCompany from "../statics/constants/IntroduceCompany";
+import IntroduceCompany from "../constants/data/IntroduceCompany";
 
 const 회사소개: React.FunctionComponent = () => {
     return (

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Button from "../components/Button";
 import { ProductModel } from "../model/ProductModel";
-import { Color } from "../statics/Color";
+import { Color } from "../constants/style/Color";
 import { useRecoilState } from "recoil";
 import { CartState } from "../hooks/CartRecoil";
 
