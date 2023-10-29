@@ -1,0 +1,1 @@
+export { ReactComponent as ShoppingCartSVG } from './shoppingcartoutline_110834.svg'
