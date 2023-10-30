@@ -38,7 +38,7 @@
 }
 
 // tablet
-@media (min-width: 576px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1150px) {
     .team-culture-content-container {
         display: grid;
         justify-content: center;
@@ -50,7 +50,7 @@
 }
 
 // mobile
-@media (max-width: 575px) {
+@media (max-width: 768px) {
     .team-culture-content-container {
         display: grid;
         justify-content: center;
