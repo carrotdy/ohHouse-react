@@ -4,7 +4,7 @@ import 회사소개 from "./main/회사소개";
 import 채용상세 from "./main/채용_상세";
 import 복지몰 from "./main/복지몰";
 import 장바구니 from "./main/장바구니";
-import 게시판 from "./main/게시판";
+import 로그인 from "./main/로그인";
 
 export class RoutePath {
   static readonly 회사소개 = {
@@ -31,8 +31,8 @@ export class RoutePath {
     path: "/views/cart",
     element: <장바구니 />,
   };
-  static readonly 게시판 = {
-    path: "/views/notice",
-    element: <게시판 />,
+  static readonly 로그인 = {
+    path: "/views/login",
+    element: <로그인 />,
   };
 }

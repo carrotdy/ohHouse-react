@@ -27,8 +27,8 @@ const Main = () => {
           element={RoutePath.장바구니.element}
         />
         <Route
-          path={RoutePath.게시판.path}
-          element={RoutePath.게시판.element}
+          path={RoutePath.로그인.path}
+          element={RoutePath.로그인.element}
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
