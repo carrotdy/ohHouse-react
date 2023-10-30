@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import Main from "./views/Main";
-import { AuthProvider } from "./views/hooks/AuthProvider";
+import { AuthProvider } from "./views/context/AuthProvider";
 import { Layout } from "./views/layouts/Layout";
 import "./views/styles/views/Index.scss";
 
