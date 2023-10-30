@@ -3,7 +3,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { auth } from "../firebase";
 import { AuthContext } from "./AuthContext";
-import { LoadingPage, isLoadingRecoil } from "./AuthRecoil";
+import { LoadingPage, isLoadingRecoil } from "../hooks/AuthRecoil";
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
