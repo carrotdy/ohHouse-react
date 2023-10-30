@@ -78,15 +78,15 @@ $color-list: (
 
 @each $name, $color in $color-list {
     .foreground-#{$name} {
-        color: $color !important;
+        color: $color;
     }
 
     .background-#{$name} {
-        background-color: $color !important;
+        background-color: $color;
     }
 
     .border-#{$name} {
-        border-color: $color !important;
+        border-color: $color;
     }
 }
 
