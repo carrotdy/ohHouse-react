@@ -14,7 +14,7 @@ const Mobile = (property: ICssProps) => Media(768, property);
 const Tablet = (property: ICssProps) => Media(1150, property);
 
 // flex box
-const FlexContainer: any = <T>(property: T) => ({
+const FlexContainer = <T>(property: T) => ({
     display: "flex",
     ...property,
 });

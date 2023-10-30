@@ -1,12 +1,24 @@
+import { getAuth } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { MainLogoPNG } from "../images/png";
-import { Color } from "../constants/style/Color";
-import { Mobile, Tablet } from "../utils/CssUtil";
 import { RoutePath } from "../RoutePath";
+import { Color } from "../constants/style/Color";
+import { MainLogoPNG } from "../images/png";
+import { Mobile, Tablet } from "../utils/CssUtil";
 
 const Navbar = () => {
+  const auth = getAuth();
+  const user = auth.currentUser;
   const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut();
+	  navigate(RoutePath.회사소개.path);
+    } catch (error) {
+      console.error("logout error:", error);
+    }
+  };
 
   return (
     <NavContainer>
@@ -21,11 +33,26 @@ const Navbar = () => {
           <StyeldLink to="/">회사소개</StyeldLink>
           <StyeldLink to="/views/team-culture">팀문화</StyeldLink>
           <StyeldLink to="/views/careers">채용</StyeldLink>
-          <StyeldLink to="/views/welfare">복지몰</StyeldLink>
-          <StyeldLink to="/views/cart">장바구니</StyeldLink>
-          <StyeldLink to="/views/login">
-            <Button type="button">로그인</Button>
-          </StyeldLink>
+          {user && (
+            <>
+              <StyeldLink to="/views/welfare">복지몰</StyeldLink>
+              <StyeldLink to="/views/cart">장바구니</StyeldLink>
+            </>
+          )}
+          {user ? (
+            <Button type="button" onClick={handleSignOut}>
+              로그아웃
+            </Button>
+          ) : (
+            <Button
+              type="button"
+              onClick={() => {
+                navigate(RoutePath.로그인.path);
+              }}
+            >
+              로그인
+            </Button>
+          )}
         </NavItemsContainer>
       </Nav>
     </NavContainer>
@@ -90,6 +117,7 @@ const Button = styled.button`
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
+  margin-left: 26px;
   cursor: pointer;
   transition: background 0.5s ease;
 
@@ -97,9 +125,15 @@ const Button = styled.button`
     background: ${Color.Orange};
   }
 
+  @media (min-width: 768px) and (max-width: 1150px) {
+    padding: 12px 12px;
+    font-size: 14px;
+  }
+
   @media (max-width: 768px) {
     padding: 8px 12px;
-	font-size: 8px;
+    font-size: 8px;
+    margin-left: 10px;
   }
 `;
 

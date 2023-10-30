@@ -1,4 +1,4 @@
-export namespace UserModel {
+export namespace AccountModel {
 	export interface IUserModel {
 		uuid: string;
 		department: string;
