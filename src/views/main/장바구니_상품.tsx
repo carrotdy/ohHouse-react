@@ -6,6 +6,7 @@ import { LOCAL_STORAGE_KEY_CART } from "../constants/localstorage/localStorageKe
 import { Color } from "../constants/style/Color";
 import { CartState } from "../hooks/CartRecoil";
 import { ProductModel } from "../model/ProductModel";
+import { Mobile } from "../utils/CssUtil";
 
 interface IProduct {
   data: ProductModel.IProductModel;
@@ -37,7 +38,7 @@ const 장바구니_상품: React.FC<IProduct> = ({ data }) => {
         }}
       />
       <div>
-        <CompanyTitle>{title}</CompanyTitle>
+        <Title>{title}</Title>
         <Company>{company}</Company>
       </div>
       <div style={{ marginLeft: "auto" }}>
@@ -60,13 +61,19 @@ const Company = styled.div({
   color: Color.Gray60,
 });
 
-const CompanyTitle = styled.div({
+const Title = styled.div({
   color: Color.Gray80,
+  ...Mobile({
+    fontSize: "14px"
+  }),
 });
 
 const CompanyPoint = styled.div({
   marginBottom: "8px",
   textAlign: "end",
+  ...Mobile({
+    fontSize: "14px",
+  }),
 });
 
 export default 장바구니_상품;
