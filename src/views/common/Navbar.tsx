@@ -88,26 +88,26 @@ const NavItemsContainer = styled.div({
 });
 
 const StyeldLink = styled(Link)({
-  fontSize: "14px",
+  fontSize: "16px",
   fontWeight: "bold",
   marginLeft: "26px",
   cursor: "pointer",
   color: Color.Gray80,
   textDecorationLine: "none",
   ...Mobile({
-    fontSize: "8px",
-    marginLeft: "10px",
+    fontSize: "10px",
+    marginLeft: "12px",
   }),
 });
 
 const Logo = styled.img({
-  width: "240px",
-  height: "60px",
+  width: "80px",
+  height: "70px",
   alignSelf: "center",
   cursor: "pointer",
   ...Mobile({
-    width: "84px",
-    height: "20px",
+    width: "56px",
+    height: "50px",
   }),
 });
 
@@ -115,9 +115,10 @@ const Button = styled.button`
   background: ${Color.MainClolor};
   color: ${Color.Gray10};
   border: none;
-  padding: 10px 20px;
+  padding: 12px 16px;
   border-radius: 5px;
   margin-left: 26px;
+  font-size: 16px;
   cursor: pointer;
   transition: background 0.5s ease;
 
@@ -125,15 +126,10 @@ const Button = styled.button`
     background: ${Color.Orange};
   }
 
-  @media (min-width: 768px) and (max-width: 1150px) {
-    padding: 12px 12px;
-    font-size: 14px;
-  }
-
   @media (max-width: 768px) {
-    padding: 8px 12px;
-    font-size: 8px;
-    margin-left: 10px;
+    padding: 8px 10px;
+    font-size: 10px;
+    margin-left: 12px;
   }
 `;
 
