@@ -64,7 +64,7 @@ const 장바구니: React.FunctionComponent = () => {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              marginTop: "6px",
+              margin: "6px 0 30px 0",
             }}
           >
             <span>상품 예정 금액</span>

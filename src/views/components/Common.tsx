@@ -8,14 +8,18 @@ import { useLocation } from "react-router";
 import { useEffect } from "react";
 
 const Container = styled.div({
-    padding: "150px 100px 0 100px",
-    ...Tablet({
-        padding: "100px 45px 0 45px",
-    }),
-    ...Mobile({
-        padding: "80px 20px 0 20px",
-    }),
-})
+  maxWidth: "1400px",
+  margin: "auto",
+  padding: "150px 100px 0 100px",
+  ...Tablet({
+    maxWidth: "1150px",
+    padding: "100px 45px 0 45px",
+  }),
+  ...Mobile({
+    maxWidth: "768px",
+    padding: "80px 20px 0 20px",
+  }),
+});
 
 const BorderBottomLineGray30 = styled.div({
     borderBottom: `1px solid ${Color.Gray30}`,
@@ -50,8 +54,8 @@ const SubTitle = styled.div({
     lineHeight: "26px",
     margin: "20px 0",
     ...Mobile({
-        fontSize: "12px",
-        lineHeight: "20px",
+        fontSize: "10px",
+        lineHeight: "18px",
     }),
 })
 
