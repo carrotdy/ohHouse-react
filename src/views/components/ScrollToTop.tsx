@@ -42,8 +42,8 @@ const ScrollToTopButton = styled.button`
   width: 50px;
   height: 50px;
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  right: 100px;
+  bottom: 34px;
   background-color: ${Color.MainClolor};
   color: ${Color.Gray10};
   border: none;
@@ -56,6 +56,16 @@ const ScrollToTopButton = styled.button`
 
   &:hover {
     background-color: ${Color.Orange};
+  }
+
+  @media (min-width: 768px) and (max-width: 1150px) {
+    right: 45px;
+    bottom: 28px;
+  }
+
+  @media (max-width: 768px) {
+    right: 20px;
+    bottom: 20px;
   }
 `;
 

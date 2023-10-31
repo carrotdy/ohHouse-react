@@ -19,7 +19,7 @@ const TeamCultureData: Array<EmploymentModel.IEmploymentModel> = [
     {
         id: 4,
         title: "우리 일의 의미를 함께 경험하기 위한 지원",
-        content: "오늘의집 꾸미기 지원금 연 150만원 지원<br/>오늘의집 VIP 회원 승급",
+        content: "오하우스에서 꾸미기 지원금 연 150만원 지원<br/>오하우스 VIP 회원 승급",
     },
 ];
 
