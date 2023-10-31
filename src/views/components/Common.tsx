@@ -4,6 +4,8 @@ import {
     Tablet
 } from "../utils/CssUtil";
 import { Color } from "../constants/style/Color";
+import { useLocation } from "react-router";
+import { useEffect } from "react";
 
 const Container = styled.div({
     padding: "150px 100px 0 100px",
@@ -57,6 +59,16 @@ export const mergeClassNames = (preClassNames: (string | undefined)[]): string =
     const className = preClassNames.filter((c) => c !== undefined && c !== "").join(" ").trim();
 
     return className;
+}
+
+export const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
 }
 
 export {
