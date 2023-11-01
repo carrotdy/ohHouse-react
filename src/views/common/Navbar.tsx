@@ -14,7 +14,7 @@ const Navbar = () => {
   const handleSignOut = async () => {
     try {
       await auth.signOut();
-	  navigate(RoutePath.회사소개.path);
+      navigate(RoutePath.회사소개.path);
     } catch (error) {
       console.error("logout error:", error);
     }
