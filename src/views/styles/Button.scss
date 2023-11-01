@@ -46,15 +46,13 @@
     }
 
     &.normal {
-        color: $colors-gray10 !important;
-        background-color: $colors-gray80;
-        border-color: $colors-gray80;
+        color: $colors-orange60 !important;
+        border-color: $colors-gray60;
 
         &:hover,
         &.hover {
-            color: $colors-gray50 !important;
-            background-color: $colors-gray20;
-            border-color: $colors-gray20;
+            color: $colors-orange60 !important;
+            border-color: $colors-orange60;
         }
 
         &.disabled {
