@@ -13,8 +13,8 @@ const 회사소개: React.FunctionComponent = () => {
   return (
     <>
       <Container>
-        <Title>오늘의 발견,일상의 변화</Title>
-        <SubTitle>
+        <Title data-aos="fade-up">오늘의 발견,일상의 변화</Title>
+        <SubTitle data-aos="fade-up">
           우리는 공간과 일상을 경험하는 방식을 새롭게 정의합니다.
           <br />
           모두의 라이프스타일에 영감을 줄 수 있도록 끊임없이 기술을 혁신하고,
@@ -24,7 +24,11 @@ const 회사소개: React.FunctionComponent = () => {
         </SubTitle>
         {IntroduceCompany.map((item, index) => {
           return (
-            <div key={`${item.index} + ${index}`}>
+            <div
+              key={`${item.index} + ${index}`}
+              data-aos="fade-up"
+              data-aos-delay={200}
+            >
               <IntroductionCompanyDetailContainer
                 style={{ whiteSpace: "pre-line" }}
               >
@@ -34,7 +38,9 @@ const 회사소개: React.FunctionComponent = () => {
                   <SubTitle>{item.description}</SubTitle>
                 </DetailTitleContainer>
               </IntroductionCompanyDetailContainer>
-              {IntroduceCompany.length -1 !== index && <BorderBottomLineGray30 />}
+              {IntroduceCompany.length - 1 !== index && (
+                <BorderBottomLineGray30 />
+              )}
             </div>
           );
         })}
