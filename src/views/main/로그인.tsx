@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { RoutePath } from "../RoutePath";
 import Button from "../components/Button";
 import { Container } from "../components/Common";
-import { Color } from "../constants/style/Color";
+import InputForm from "../components/InputForm";
 import { isLoadingRecoil } from "../hooks/AuthRecoil";
 
 const 로그인 = () => {
@@ -58,19 +58,21 @@ const 로그인 = () => {
       <FormContainer>
         <form onSubmit={handleSubmit}>
           <FormGroup>
-            <Label htmlFor="email">이메일</Label>
-            <Input
-              type="email"
-              name="email"
+            <InputForm
+              label="이메일"
+              type={"email"}
+              name={"email"}
+              required={true}
               placeholder="이메일을 입력하세요"
               onChange={handleOnChange}
             />
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="password">비밀번호</Label>
-            <Input
-              type="password"
-              name="password"
+            <InputForm
+              label="비밀번호"
+              type={"password"}
+              name={"password"}
+              required={true}
               placeholder="비밀번호를 입력하세요"
               onChange={handleOnChange}
             />
@@ -101,18 +103,5 @@ const FormGroup = styled.div({
   width: "340px",
 });
 
-const Label = styled.label({
-  display: "block",
-  fontWeight: "bold",
-  color: Color.Gray80,
-});
-
-const Input = styled.input({
-  width: "100%",
-  padding: "8px",
-  marginTop: "6px",
-  border: `1px solid ${Color.Gray40}`,
-  borderRadius: "4px",
-});
 
 export default 로그인;

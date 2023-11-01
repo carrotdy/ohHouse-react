@@ -1,47 +1,98 @@
+import { FileAddOutlined } from "@ant-design/icons";
+import { Button, Tag } from "antd";
+import dayjs from "dayjs";
 import { useLocation } from "react-router-dom";
+import styled from "styled-components";
 import {
-  BorderBottomLineGray30,
   BorderBottomLineGray80,
   Container,
   SubTitle,
   Title,
 } from "../components/Common";
-import styled from "styled-components";
-import dayjs from "dayjs";
 import { Color } from "../constants/style/Color";
 import { Mobile } from "../utils/CssUtil";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { JobPostingModel } from "../model/JobPostingModel";
 
 const 채용_상세: React.FunctionComponent = () => {
-  const location = useLocation().state;
-  const day = dayjs(location.date).diff(dayjs(), "day");
+  const career = useLocation().state as JobPostingModel.IJobPostingModel;
+  const day = dayjs(career.date).diff(dayjs(), "day");
+
+  const fileDownLoad = async (fileName: string) => {
+    const storage = getStorage();
+    const starsRef = ref(storage, `images/job-posting/${fileName}`);
+
+    getDownloadURL(starsRef)
+      .then((url) => {
+        const xhr = new XMLHttpRequest();
+        xhr.responseType = "blob";
+        xhr.onload = function () {
+          const blob = xhr.response;
+          const link = window.document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = `${fileName}`;
+          link.click();
+          URL.revokeObjectURL(link.href);
+        };
+        xhr.open("GET", url);
+        xhr.send();
+      })
+      .catch((e) => {
+        console.log("error", e);
+      });
+  };
 
   return (
     <Container>
-      <Title style={{ marginTop: 30 }}>{location.title}</Title>
+      <Title style={{ marginTop: 30 }}>{career.title}</Title>
       <SubTitleContainer>
         <Date>
           D{day < 0 ? "" : "+"}
           {day}
         </Date>
         <SubTitle style={{ margin: 0 }}>
-          ~{location.date} | {location.department}
+          ~{dayjs(career.date).format("YYYY.MM.DD")}
         </SubTitle>
       </SubTitleContainer>
+      {Object.values(career.department).map((depart: string, index: number) => {
+        return (
+          <Tag
+            key={career.uuid}
+            className="post-department"
+            color="geekblue"
+            style={{ marginTop: "10px", marginBottom: "20px" }}
+          >
+            {depart}
+          </Tag>
+        );
+      })}
       <BorderBottomLineGray80 />
       <div
         dangerouslySetInnerHTML={{
-          __html: location.content,
+          __html: career.content,
         }}
-        style={{ margin: "30px 0" }}
+        style={{ margin: "30px 0", minHeight: "300px" }}
       />
-      <BorderBottomLineGray30 />
+      {career.fileName && (
+        <Button
+          download
+          icon={<FileAddOutlined />}
+          onClick={() => {
+            if (career.fileName) {
+              fileDownLoad(career.fileName);
+            }
+          }}
+          style={{ marginBottom: "20px" }}
+        >
+          {career.fileName}
+        </Button>
+      )}
     </Container>
   );
 };
 
 const SubTitleContainer = styled.div({
   display: "flex",
-  margin: "5px 0 30px 0",
 });
 
 const Date = styled.div({

@@ -1,92 +1,80 @@
 import { RegisterOptions, useFormContext, Controller } from "react-hook-form";
 import { Color } from "../constants/style/Color";
+import { ChangeEvent, Children, ReactNode } from "react";
+import styled from "styled-components";
 
 interface InputFormProps {
   name: string;
+  type: string;
   label?: string;
   defaultValue?: string;
-  rules?: RegisterOptions; //규칙
   disabled?: boolean;
   onFocus?: () => void;
-  required: boolean;
+  required?: boolean;
   placeholder?: string;
   autoFocus?: boolean;
-  onChangeText?: (text: string) => void;
-  pattern: string;
-  message?: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  pattern?: string;
   style?: React.CSSProperties;
 }
 
 const InputForm = (props: InputFormProps) => {
   const {
     name,
+    type,
     label,
     defaultValue,
-    rules,
     disabled,
     onFocus,
-    required,
+    required = false,
     placeholder,
     autoFocus,
-    onChangeText,
+    onChange,
     pattern,
-    message,
     style,
   } = props;
 
-  const context = useFormContext();
-  const {
-    formState: { errors },
-  } = context;
-
   return (
     <div style={style}>
-      {label && <label>{label}</label>}
-      <Controller
-        render={({ field: { onChange, onBlur, value } }) => (
-          <div style={{ flexDirection: "row" }}>
-            <input
-              {...props}
-              style={{
-                flex: 1,
-                padding: 0,
-                height: 34,
-                borderStyle: "solid",
-                borderWidth: 1,
-                borderRadius: 4,
-                backgroundColor: disabled ? Color.Gray20 : Color.Gray10,
-                borderColor: disabled
-                  ? Color.Gray30
-                  : errors[name]
-                  ? Color.Red100
-                  : Color.Gray30,
-                justifyContent: "center",
-              }}
-              onBlur={onBlur}
-              onFocus={onFocus}
-              onChange={(value) => {
-                onChange(value);
-                onChangeText && onChange(value);
-              }}
-              pattern={pattern}
-              value={value}
-              required={required}
-              placeholder={placeholder}
-              autoFocus={autoFocus}
-            />
-          </div>
-        )}
-        name={name}
-        rules={rules}
-        defaultValue={defaultValue || ""}
-      />
-      {errors[name] && (
-        <p style={{ color: Color.Red100, fontSize: 12 }}>
-          {message || "입력 형식이 올바르지 않습니다."}
-        </p>
+      {!!label && (
+        <>
+          {required ? (
+            <>
+              <span style={{ color: Color.Red100 }}>*</span>
+              <label>{label}</label>
+            </>
+          ) : (
+            <label>{label}</label>
+          )}
+        </>
       )}
+      <div style={{ flexDirection: "row" }}>
+        <Input
+          {...props}
+          type={type}
+          name={name}
+          onFocus={onFocus}
+          onChange={(value) => {
+            onChange(value);
+          }}
+          pattern={pattern}
+          disabled={disabled}
+          required={required}
+          placeholder={placeholder}
+          autoFocus={autoFocus}
+          defaultValue={defaultValue}
+        />
+      </div>
     </div>
   );
 };
+
+const Input = styled.input({
+  width: "100%",
+  padding: "8px",
+  marginTop: "6px",
+  border: `1px solid ${Color.Gray40}`,
+  borderRadius: "4px",
+});
 
 export default InputForm;

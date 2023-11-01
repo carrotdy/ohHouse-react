@@ -1,8 +1,10 @@
+import { Tag } from "antd";
 import dayjs from "dayjs";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { isEmpty } from "lodash-es";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
+import { ClipLoader } from "react-spinners";
 import styled from "styled-components";
 import { RoutePath } from "../RoutePath";
 import Button from "../components/Button";
@@ -15,7 +17,6 @@ import {
 } from "../components/Common";
 import { Color } from "../constants/style/Color";
 import { db } from "../firebase";
-import { isLoadingRecoil } from "../hooks/AuthRecoil";
 import { JobPostingModel } from "../model/JobPostingModel";
 import { Mobile } from "../utils/CssUtil";
 
@@ -23,13 +24,13 @@ const 채용: React.FunctionComponent = () => {
   const [career, setCareer] = useState<Array<JobPostingModel.IJobPostingModel>>(
     []
   );
-  const setIsLoading = useSetRecoilState<boolean>(isLoadingRecoil);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const navigate = useNavigate();
-
   const CollectionRef = collection(db, "job-posting");
 
   const getJobPosting = async () => {
+    setIsLoading(true);
     try {
       const PostingOrderBy = query(CollectionRef, orderBy("date", "desc"));
       const data = await getDocs(PostingOrderBy);
@@ -38,13 +39,13 @@ const 채용: React.FunctionComponent = () => {
         (doc) =>
           ({
             ...doc.data(),
-            id: doc.id,
+            uuid: doc.id,
           } as JobPostingModel.IJobPostingModel)
       );
 
       setCareer(careerData);
     } catch (error) {
-      console.error("데이터 불러오기 실패", error);
+      console.error("error", error);
     } finally {
       setIsLoading(false);
     }
@@ -57,47 +58,94 @@ const 채용: React.FunctionComponent = () => {
   return (
     <Container style={{ paddingBottom: "30px" }}>
       <Title>채용공고</Title>
-      <SubTitle style={{ marginBottom: "40px" }}>
-        모두의 삶을 함께 바꿔나갈 기회,
-        <br />
-        당신의 도전이 새로운 미래를 만듭니다.
-      </SubTitle>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "10px",
+        }}
+      >
+        <SubTitle style={{ marginBottom: "10px" }}>
+          모두의 삶을 함께 바꿔나갈 기회,
+          <br />
+          당신의 도전이 새로운 미래를 만듭니다.
+        </SubTitle>
+        <Button
+          text={`작성`}
+          type={"normal"}
+          size={"small"}
+          width={24}
+          onClick={() => {
+            navigate(RoutePath.채용작성.path);
+          }}
+          style={{ height: "12px", alignSelf: "end" }}
+        />
+      </div>
       <BorderBottomLineGray80 style={{ borderWidth: "2px" }} />
-      {career.map((item, index) => {
-        const day = dayjs(item.date).diff(dayjs(), "day");
+      {isLoading ? (
+        <LoadingBar>
+          <ClipLoader color={Color.Orange} />
+        </LoadingBar>
+      ) : isEmpty(career) ? (
+        <div style={{ textAlign: "center", padding: "300px 0 255px 0" }}>
+          진행중인 채용공고가 없습니다.
+        </div>
+      ) : (
+        <>
+          {career.map((item, index) => {
+            const day = dayjs(item.date).diff(dayjs(), "day");
 
-        return (
-          <div key={item.id}>
-            <JobPostingContainer>
-              <TextContainer key={item.id}>
-                <PostingTitle>{item.title}</PostingTitle>
-                <SubTitleContainer>
-                  <Date>
-                    D{day < 0 ? "" : "+"}
-                    {day}
-                  </Date>
-                  <SubTitle style={{ margin: 0 }}>
-                    ~{item.date} | {item.department}
-                  </SubTitle>
-                </SubTitleContainer>
-              </TextContainer>
-              <Button
-                text={item.isClose ? `채용마감` : `채용중`}
-                type={"primary"}
-                size={"medium"}
-                width={80}
-                disabled={item.isClose}
-                onClick={() => {
-                  navigate(RoutePath.채용상세.path, {
-                    state: { ...item },
-                  });
-                }}
-              />
-            </JobPostingContainer>
-            {career.length - 1 !== index && <BorderBottomLineGray30 />}
-          </div>
-        );
-      })}
+            return (
+              <div key={item.uuid}>
+                <JobPostingContainer>
+                  <TextContainer>
+                    <PostingTitle>{item.title}</PostingTitle>
+                    <SubTitleContainer>
+                      <Date>
+                        D{day < 0 ? "" : "+"}
+                        {day}
+                      </Date>
+                      <SubTitle style={{ margin: 0 }}>
+                        ~{dayjs(item.date).format("YYYY.MM.DD")}
+                      </SubTitle>
+                    </SubTitleContainer>
+                    {Object.values(item.department).map(
+                      (depart: string, index: number) => {
+                        return (
+                          <Tag
+                            key={item.uuid}
+                            className="post-department"
+                            color="geekblue"
+                            style={{
+                              marginTop: "10px",
+                              marginBottom: "20px",
+                            }}
+                          >
+                            {depart}
+                          </Tag>
+                        );
+                      }
+                    )}
+                  </TextContainer>
+                  <Button
+                    text={item.isClose ? `채용마감` : `채용중`}
+                    type={"primary"}
+                    size={"medium"}
+                    width={80}
+                    disabled={item.isClose}
+                    onClick={() => {
+                      navigate(RoutePath.채용상세.path, {
+                        state: { ...item },
+                      });
+                    }}
+                  />
+                </JobPostingContainer>
+                {career.length - 1 !== index && <BorderBottomLineGray30 />}
+              </div>
+            );
+          })}
+        </>
+      )}
     </Container>
   );
 };
@@ -123,7 +171,6 @@ const PostingTitle = styled.div({
 
 const SubTitleContainer = styled.div({
   display: "flex",
-  margin: "5px 0 14px 0",
 });
 
 const JobPostingContainer = styled.div({
@@ -146,6 +193,15 @@ const Date = styled.div({
     fontSize: "12px",
     lineHeight: "20px",
   }),
+});
+
+const LoadingBar = styled.div({
+  textAlign: "center",
+  margin: "10px 0",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  height: "100vh",
 });
 
 export default 채용;
