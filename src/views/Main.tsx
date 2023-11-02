@@ -16,6 +16,10 @@ const Main = () => {
         element={RoutePath.채용작성.element}
       />
       <Route
+        path={RoutePath.채용수정.path}
+        element={RoutePath.채용수정.element}
+      />
+      <Route
         path={RoutePath.채용상세.path}
         element={RoutePath.채용상세.element}
       />
