@@ -1,6 +1,5 @@
 import { FileAddOutlined } from "@ant-design/icons";
 import { Button, DatePicker, Form, Input, Modal, Select, Upload } from "antd";
-import { UploadChangeParam } from "antd/es/upload";
 import dayjs from "dayjs";
 import { getAuth } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
@@ -26,26 +25,39 @@ const 채용_작성 = () => {
   const [form] = Form.useForm();
 
   const [content, setContent] = useState<string>("");
-  const [fileName, setFileName] = useState<string>("");
+  const [fileList, setFileList] = useState<
+    { name: string; file: File | Blob }[]
+  >([]);
 
   const [isLoading, setIsLoading] = useRecoilState<boolean>(isLoadingRecoil);
 
   const normFile = (e: any) => {
-    const fileData: Blob | Uint8Array | ArrayBuffer = e.file.originFileObj as
-      | Blob
-      | Uint8Array
-      | ArrayBuffer;
     const storage = getStorage();
-    const imagesRef = ref(storage, `images/job-posting/${e.file.name}`);
-    setFileName(e.file.name);
-
     const metadata = {
       contentType: e.file.type,
     };
 
-    uploadBytes(imagesRef, fileData, metadata).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then(() => {});
-    });
+    const newFiles = e.fileList
+      .slice(0, 5)
+      .map((fileItem: { originFileObj: Blob; name: string }) => {
+        const fileData: Blob = fileItem.originFileObj;
+        const imagesRef = ref(storage, `images/job-posting/${fileItem.name}`);
+
+        uploadBytes(imagesRef, fileData, metadata)
+          .then((snapshot) => {
+            getDownloadURL(snapshot.ref).then(() => {});
+          })
+          .catch((error) => {
+            console.error("error: ", error);
+          });
+
+        return {
+          name: fileItem.name,
+          file: fileData,
+        };
+      });
+
+    setFileList(newFiles);
   };
 
   const handleContent = (htmlContent: string) => {
@@ -66,7 +78,7 @@ const 채용_작성 = () => {
               date: dayjs(data.date).format("YYYY-MM-DD HH:mm:ss"),
               content: data.content,
               isClose: false,
-              fileName: fileName || null,
+              fileNames: fileList.map((file) => file.name),
               department: data.department,
               uuid: user?.uid,
             });
@@ -100,7 +112,7 @@ const 채용_작성 = () => {
             },
           ]}
         >
-          <Select mode="multiple" style={{ width: 200 }}>
+          <Select mode="multiple" style={{ width: "50%" }}>
             {data.map((data) => {
               return (
                 <Option key={data.id} value={data.department}>
@@ -148,18 +160,18 @@ const 채용_작성 = () => {
         </Form.Item>
         <Form.Item
           label={"첨부파일"}
-          name="fileName"
+          name="fileNames"
           valuePropName="fileList"
           getValueFromEvent={normFile}
-          rules={[
-            {
-              required: false,
-              message: "첨부파일을 첨부하세요",
-            },
-          ]}
           style={{ marginTop: "80px" }}
         >
+          <p style={{ color: "red", fontSize: "12px", marginTop: 0 }}>
+            (파일은 최대 5개까지 첨부 가능)
+          </p>
           <Upload
+            onChange={normFile}
+            maxCount={5}
+            multiple={true}
             beforeUpload={(file) => {
               const maxSizeInBytes = 10 * 1024 * 1024;
               if (file.size > maxSizeInBytes) {
@@ -171,9 +183,6 @@ const 채용_작성 = () => {
               }
               return true;
             }}
-            name="fileName"
-            maxCount={1}
-            multiple={false}
           >
             <Button loading={isLoading} icon={<FileAddOutlined />}>
               파일 업로드
