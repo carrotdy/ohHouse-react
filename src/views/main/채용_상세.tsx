@@ -98,9 +98,9 @@ const 채용_상세: React.FunctionComponent = () => {
         }}
         style={{ margin: "30px 0", minHeight: "300px" }}
       />
-      <p>* 첨부파일</p>
       {career.fileNames && career.fileNames.length > 0 && (
         <div style={{ display: "inline-grid" }}>
+          <p>* 첨부파일</p>
           {career.fileNames.map((fileName, index) => (
             <Button
               key={index}

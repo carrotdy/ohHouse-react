@@ -14,6 +14,7 @@ import { db } from "../firebase";
 import { isLoadingRecoil } from "../hooks/AuthRecoil";
 import { DepartModel } from "../model/DepartmentModel";
 import { JobPostingModel } from "../model/JobPostingModel";
+import { UploadChangeParam, UploadFile } from "antd/es/upload";
 
 const 채용_작성 = () => {
   const data: Array<DepartModel.IDepartment> = useMemo(() => {
@@ -31,39 +32,54 @@ const 채용_작성 = () => {
 
   const [isLoading, setIsLoading] = useRecoilState<boolean>(isLoadingRecoil);
 
-  const normFile = (e: any) => {
+  //파일 업로드 처리
+  const normFile = (e: UploadChangeParam) => {
     const storage = getStorage();
     const metadata = {
       contentType: e.file.type,
     };
 
-    const newFiles = e.fileList
-      .slice(0, 5)
-      .map((fileItem: { originFileObj: Blob; name: string }) => {
-        const fileData: Blob = fileItem.originFileObj;
-        const imagesRef = ref(storage, `images/job-posting/${fileItem.name}`);
+    const newFiles = e.fileList.slice(0, 5).map((fileItem: UploadFile) => {
+      const fileData = fileItem.originFileObj as File | Blob;
+      const imagesRef = ref(storage, `images/job-posting/${fileItem.name}`);
 
-        uploadBytes(imagesRef, fileData, metadata)
-          .then((snapshot) => {
-            getDownloadURL(snapshot.ref).then(() => {});
-          })
-          .catch((error) => {
-            console.error("error: ", error);
-          });
+      uploadBytes(imagesRef, fileData, metadata)
+        .then((snapshot) => {
+          getDownloadURL(snapshot.ref).then(() => {});
+        })
+        .catch((error) => {
+          console.error("error: ", error);
+        });
 
-        return {
-          name: fileItem.name,
-          file: fileData,
-        };
-      });
+      return {
+        name: fileItem.name,
+        file: fileData,
+      };
+    });
 
     setFileList(newFiles);
   };
 
+  //QuillEditor
   const handleContent = (htmlContent: string) => {
     setContent(htmlContent);
   };
 
+  const handleDeleteJobPosting = (fileName: string) => {
+    Modal.confirm({
+      title: "파일을 삭제하시겠습니까?",
+      okText: "확인",
+      cancelText: "취소",
+      onOk: async () => {
+        const updatedFileList = fileList.filter(
+          (file) => file.name !== fileName
+        );
+        setFileList(updatedFileList);
+      },
+    });
+  };
+
+  //채용공고 작성
   const onSubmit = async () => {
     Modal.confirm({
       title: "채용공고를 작성하시겠습니까?",
@@ -189,6 +205,35 @@ const 채용_작성 = () => {
             </Button>
           </Upload>
         </Form.Item>
+        {fileList && (
+          <div>
+            {fileList.map((file, index) => {
+              return (
+                <div
+                  key={index}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <p>{file.name ? file.name : ""}</p>
+                  <Button
+                    key={index}
+                    danger
+                    style={{
+                      marginBottom: "7px",
+                    }}
+                    type="default"
+                    onClick={() => handleDeleteJobPosting(file.name)}
+                  >
+                    삭제
+                  </Button>
+                </div>
+              );
+            })}
+          </div>
+        )}
         <div style={{ textAlign: "center" }}>
           <Button
             htmlType="submit"
