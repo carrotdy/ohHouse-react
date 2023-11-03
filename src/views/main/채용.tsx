@@ -29,6 +29,7 @@ const 채용: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const CollectionRef = collection(db, "job-posting");
 
+  //채용정보 가져오기
   const getJobPosting = async () => {
     setIsLoading(true);
     try {
@@ -114,7 +115,7 @@ const 채용: React.FunctionComponent = () => {
                         <Tag
                           key={`${item.uuid} + ${index}`}
                           color="geekblue"
-						  style={{marginBottom:"8px"}}
+                          style={{ marginBottom: "8px" }}
                         >
                           {depart}
                         </Tag>

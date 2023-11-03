@@ -1,6 +1,10 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 * {
     font-family: "Spoqa Han Sans Neo", "sans-serif";
+	//antd에서 필수적으로 파일업로드하면 뜨는 css 제거
+	.ant-upload-list {  
+		display: none;
+	}
 }
 
 @import "./Common.scss";

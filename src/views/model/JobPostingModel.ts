@@ -6,6 +6,6 @@ export namespace JobPostingModel {
 		date: string;
 		department: Array<string>;
 		isClose: boolean;
-		fileNames: Array<string> | null
+		fileNames: Array<string>
 	}
 }
