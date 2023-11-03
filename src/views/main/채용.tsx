@@ -29,6 +29,7 @@ const 채용: React.FunctionComponent = () => {
   const navigate = useNavigate();
   const CollectionRef = collection(db, "job-posting");
 
+  //채용정보 가져오기
   const getJobPosting = async () => {
     setIsLoading(true);
     try {
@@ -109,23 +110,17 @@ const 채용: React.FunctionComponent = () => {
                         ~{dayjs(item.date).format("YYYY.MM.DD")}
                       </SubTitle>
                     </SubTitleContainer>
-                    {Object.values(item.department).map(
-                      (depart: string, index: number) => {
-                        return (
-                          <Tag
-                            key={item.uuid}
-                            className="post-department"
-                            color="geekblue"
-                            style={{
-                              marginTop: "10px",
-                              marginBottom: "20px",
-                            }}
-                          >
-                            {depart}
-                          </Tag>
-                        );
-                      }
-                    )}
+                    {item.department.map((depart: string, index: number) => {
+                      return (
+                        <Tag
+                          key={`${item.uuid} + ${index}`}
+                          color="geekblue"
+                          style={{ marginBottom: "8px" }}
+                        >
+                          {depart}
+                        </Tag>
+                      );
+                    })}
                   </TextContainer>
                   <Button
                     text={item.isClose ? `채용마감` : `채용중`}
