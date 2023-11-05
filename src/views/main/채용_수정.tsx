@@ -34,7 +34,7 @@ const 채용_수정 = () => {
 
   const navigate = useNavigate();
 
-  const CollectionRef = doc(db, "job-posting", career.uuid);
+  const CollectionRef = doc(db, "job-posting", career.postId);
   const user = getAuth().currentUser;
 
   const { Option } = Select;
@@ -111,11 +111,11 @@ const 채용_수정 = () => {
             const updateRef = CollectionRef;
             const updatedData = {
               ...values,
+              userUid: user?.uid,
               date: dayjs(values.date).format("YYYY-MM-DD HH:mm:ss"),
-              content: content,
+              content,
               isClose: false,
               fileNames: posting.fileNames,
-              uuid: user?.uid,
             };
 
             updateDoc(updateRef, updatedData).then(() => {
