@@ -40,7 +40,6 @@ const 채용: React.FunctionComponent = () => {
         (doc) =>
           ({
             ...doc.data(),
-            uuid: doc.id,
           } as JobPostingModel.IJobPostingModel)
       );
 
@@ -97,7 +96,7 @@ const 채용: React.FunctionComponent = () => {
             const day = dayjs(item.date).diff(dayjs(), "day");
 
             return (
-              <div key={item.uuid}>
+              <div key={item.postId}>
                 <JobPostingContainer>
                   <TextContainer>
                     <PostingTitle>{item.title}</PostingTitle>
@@ -113,7 +112,7 @@ const 채용: React.FunctionComponent = () => {
                     {item.department.map((depart: string, index: number) => {
                       return (
                         <Tag
-                          key={`${item.uuid} + ${index}`}
+                          key={`${item.postId} + ${index}`}
                           color="geekblue"
                           style={{ marginBottom: "8px" }}
                         >

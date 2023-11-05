@@ -2,7 +2,7 @@ import { FileAddOutlined } from "@ant-design/icons";
 import { Button, DatePicker, Form, Input, Modal, Select, Upload } from "antd";
 import dayjs from "dayjs";
 import { getAuth } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useMemo, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -88,16 +88,19 @@ const 채용_작성 = () => {
       onOk: async () => {
         form
           .validateFields()
-          .then(async (data: JobPostingModel.IJobPostingModel) => {
-            await addDoc(collection(db, "job-posting"), {
-              title: data.title,
-              date: dayjs(data.date).format("YYYY-MM-DD HH:mm:ss"),
-              content: data.content,
+          .then(async (values) => {
+            const docRef = await addDoc(collection(db, "job-posting"), {
+              ...values,
+              userUid: user?.uid,
+              date: dayjs(values.date).format("YYYY-MM-DD HH:mm:ss"),
               isClose: false,
               fileNames: fileList.map((file) => file.name),
-              department: data.department,
-              uuid: user?.uid,
             });
+
+            // 고유한 postId 생성
+            const postId = docRef.id;
+            await updateDoc(docRef, { postId: postId });
+
             window.location.href = RoutePath.채용.path;
           })
           .catch((error) => {
