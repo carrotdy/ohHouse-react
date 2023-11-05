@@ -3,7 +3,6 @@ import { RecoilRoot } from "recoil";
 import Main from "./views/Main";
 import { AuthProvider } from "./views/context/AuthProvider";
 import { Layout } from "./views/layouts/Layout";
-import "./views/styles/views/Index.scss";
 import { ScrollToTop } from "./views/components/Common";
 import AOS from "aos";
 import "aos/dist/aos.css";

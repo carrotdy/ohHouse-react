@@ -10,6 +10,10 @@ const Main = () => {
         element={RoutePath.회사소개.element}
       />
       <Route path={RoutePath.팀문화.path} element={RoutePath.팀문화.element} />
+      <Route
+        path={RoutePath.팀문화직원소리.path}
+        element={RoutePath.팀문화직원소리.element}
+      />
       <Route path={RoutePath.채용.path} element={RoutePath.채용.element} />
       <Route
         path={RoutePath.채용작성.path}

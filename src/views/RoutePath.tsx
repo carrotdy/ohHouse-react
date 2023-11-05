@@ -1,5 +1,6 @@
 import 채용 from "./main/채용";
 import 팀문화 from "./main/팀문화";
+import 팀문화직원소리 from "./main/팀문화_직원의소리";
 import 회사소개 from "./main/회사소개";
 import 채용상세 from "./main/채용_상세";
 import 채용작성 from "./main/채용_작성";
@@ -16,6 +17,10 @@ export class RoutePath {
   static readonly 팀문화 = {
     path: "/views/team-culture",
     element: <팀문화 />,
+  };
+  static readonly 팀문화직원소리 = {
+    path: "/views/team-culture",
+    element: <팀문화직원소리 />,
   };
   static readonly 채용 = {
     path: "/views/careers",
