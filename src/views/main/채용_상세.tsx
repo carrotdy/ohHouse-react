@@ -15,10 +15,12 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { JobPostingModel } from "../model/JobPostingModel";
 import EditButton from "../components/Button";
 import { RoutePath } from "../RoutePath";
+import { getAuth } from "firebase/auth";
 
 const 채용_상세: React.FunctionComponent = () => {
   const career = useLocation().state as JobPostingModel.IJobPostingModel;
   const day = dayjs(career.date).diff(dayjs(), "day");
+  const user = getAuth().currentUser;
 
   const navigate = useNavigate();
 
@@ -70,7 +72,7 @@ const 채용_상세: React.FunctionComponent = () => {
           {career.department.map((depart: string, index: number) => {
             return (
               <Tag
-                key={`${career.uuid} + ${index}`}
+                key={`${career.postId} + ${index}`}
                 className="post-department"
                 color="geekblue"
               >
@@ -79,17 +81,19 @@ const 채용_상세: React.FunctionComponent = () => {
             );
           })}
         </div>
-        <EditButton
-          text={`수정`}
-          type={"normal"}
-          size={"small"}
-          width={24}
-          onClick={() => {
-            navigate(RoutePath.채용수정.path, {
-              state: { ...career },
-            });
-          }}
-        />
+        {user?.uid === career.userUid && (
+          <EditButton
+            text={`수정`}
+            type={"normal"}
+            size={"small"}
+            width={24}
+            onClick={() => {
+              navigate(RoutePath.채용수정.path, {
+                state: { ...career },
+              });
+            }}
+          />
+        )}
       </div>
       <BorderBottomLineGray80 />
       <div

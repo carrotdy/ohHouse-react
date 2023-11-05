@@ -1,6 +1,7 @@
 export namespace JobPostingModel {
 	export interface IJobPostingModel {
-		uuid: string;
+		userUid: string;
+		postId: string;
 		title: string;
 		content: string;
 		date: string;
