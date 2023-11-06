@@ -39,9 +39,9 @@ const 복지몰: React.FunctionComponent = () => {
 
   return (
     <Container>
-      <Title>쇼핑모아 복지몰</Title>
+      <Title>오하우스 복지몰</Title>
       <SubTitle>
-        쇼핑모아 모든 직원들이 복지포인트를 이용하여
+        오하우스 모든 직원들이 복지포인트를 이용하여
         <br />
         쇼핑을 할 수 있는 공간입니다
       </SubTitle>

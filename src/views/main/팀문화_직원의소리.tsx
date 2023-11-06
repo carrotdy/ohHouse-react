@@ -15,7 +15,7 @@ const 팀문화_직원의소리 = () => {
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 2200,
+    autoplaySpeed: 1200,
     responsive: [
       {
         breakpoint: 1151,
