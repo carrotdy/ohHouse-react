@@ -14,53 +14,52 @@
 <br/>
 <br/>
 
-
 ## 📝페이지별 기능
 <div align="center">
   <table>
     <tr>
       <td>
         <span>로그인/로그아웃</span><br/>
-        <img src="https://github.com/carrotdy/test/assets/83288448/911931a0-ed20-4c20-89ee-f0df95b44b52" width="400" height="220">
+        <img src="https://github.com/carrotdy/react_oh_house_hompage/assets/83288448/b2ab6c21-1d3f-4235-aee2-f265ff134eec" width="400" height="220">
       </td>
       <td>
         <span>회사소개</span><br/>
-        <img src="https://github.com/carrotdy/test/assets/83288448/ee23311a-1a34-4c92-9e22-013d01a07d1d" width="400" height="220">
+        <img src="https://github.com/carrotdy/react_oh_house_hompage/assets/83288448/cdd8c718-d0b5-4b0b-a214-420d57ec4d06" width="400" height="220">
       </td>
     </tr>
     <tr>
       <td>
         <span>팀문화</span><br/>
-        <img src="https://github.com/carrotdy/test/assets/83288448/5e906ce2-4313-414e-a2d9-6c2ec96d1315" width="400" height="220">
+        <img src="https://github.com/carrotdy/react_oh_house_hompage/assets/83288448/a7803ea4-6302-433d-8736-8c6a6f61bc7b" width="400" height="220">
       </td>
       <td>
         <span>채용공고</span><br/>
-        <img src="https://github.com/carrotdy/test/assets/83288448/49565259-3235-49a6-ac52-9d9eedcbc44e" width="400" height="220">
+        <img src="https://github.com/carrotdy/react_oh_house_hompage/assets/83288448/2ac1f501-0ab7-48c8-8a80-179e3e05ae44" width="400" height="220">
       </td>
     </tr>
     <tr>
       <td>
         <span>채용공고 작성</span><br/>
-        <img src="https://github.com/carrotdy/test/assets/83288448/60e01589-7fbe-422d-9c38-add202955498" width="400" height="220">
+        <img src="https://github.com/carrotdy/react_oh_house_hompage/assets/83288448/97b48be6-ae43-4674-aba8-32cbad12de38" width="400" height="220">
       </td>
       <td>
         <span>채용공고 수정</span><br/>
-        <img src="https://github.com/carrotdy/test/assets/83288448/175b9b96-d807-4894-8343-bc7f4820b273" width="400" height="220">
+        <img src="https://github.com/carrotdy/react_oh_house_hompage/assets/83288448/205d60ab-4f28-4fe7-9cf9-dd516779df8e" width="400" height="220">
       </td>
     </tr>
     <tr>
       <td>
         <span>채용공고 상세</span><br/>
-        <img src="https://github.com/carrotdy/test/assets/83288448/6ca79e5c-0e68-4158-8d13-15fc24e1307c" width="400" height="220">
+        <img src="https://github.com/carrotdy/react_oh_house_hompage/assets/83288448/9e048ea0-33e8-4172-8045-fe41e83e582a" width="400" height="220">
       </td>
       <td>
         <span>복지몰</span><br/>
-        <img src="https://github.com/carrotdy/test/assets/83288448/2fb8a9c5-d73e-4172-9e56-b5ab844ff9af" width="400" height="220">
+        <img src="https://github.com/carrotdy/react_oh_house_hompage/assets/83288448/65632de2-ce44-4f1e-99c9-11e838689daf" width="400" height="220">
       </td>
     </tr>
      <td>
         <span>장바구니</span><br/>
-        <img src="https://github.com/carrotdy/test/assets/83288448/df8facc6-a607-490a-b640-aae41081b98e" width="400" height="220">
+        <img src="https://github.com/carrotdy/react_oh_house_hompage/assets/83288448/a29b0486-bbb2-469b-9449-2b755270f868" width="400" height="220">
       </td>
   </table>
 </div>
