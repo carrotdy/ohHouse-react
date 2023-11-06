@@ -1,4 +1,4 @@
-## ✏️오하우스(React_Oh_House_Hompage)
+## ✏️오하우스(react_oh_house_hompage)
 이름: Hong DaYoung<br/>
 이메일: dy2dy23@naver.com<br/>
 <br/>
