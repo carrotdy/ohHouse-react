@@ -128,8 +128,8 @@ const Button = styled.button`
 
   @media (max-width: 768px) {
     padding: 8px 10px;
-    font-size: 10px;
-    margin-left: 12px;
+    font-size: 9px;
+    margin-left: 10px;
   }
 `;
 
