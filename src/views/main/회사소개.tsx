@@ -13,7 +13,9 @@ const 회사소개: React.FunctionComponent = () => {
   return (
     <>
       <Container>
-        <Title data-aos="fade-up">오늘의 발견,일상의 변화</Title>
+        <Title data-aos="fade-up">
+          오늘의 발견,일상의 변화
+        </Title>
         <SubTitle data-aos="fade-up">
           우리는 공간과 일상을 경험하는 방식을 새롭게 정의합니다.
           <br />
