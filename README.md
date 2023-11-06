@@ -79,7 +79,7 @@ pw:
 ```
 <br/>
 
-## Development Environment
+## 개발환경
 
 언어<br/>
  - typescript: 4.9.5<br/>
