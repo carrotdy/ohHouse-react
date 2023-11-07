@@ -1,6 +1,4 @@
-## ✏️오하우스(react_oh_house_hompage)
-이름: Hong DaYoung<br/>
-이메일: dy2dy23@naver.com<br/>
+## ✏️OhHouse Homepage
 <br/>
 
 ## 💫핵심 기능
@@ -81,7 +79,7 @@ pw:
 ## 개발환경
 
 언어<br/>
-- typescript: 4.9.5<br/>
+typescript: 4.9.5<br/>
 
 <br/>
 라이브러리<br/>
