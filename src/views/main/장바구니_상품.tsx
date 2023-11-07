@@ -20,6 +20,9 @@ const 장바구니_상품: React.FC<IProduct> = ({ data }) => {
 
   const handleClickDelete = () => {
     setCartItem((prev) => prev.filter((e) => e.id !== id));
+
+    const updatedCart = cartItem.filter((item) => item.id !== id);
+    localStorage.setItem(LOCAL_STORAGE_KEY_CART, JSON.stringify(updatedCart));
   };
 
   useEffect(() => {
@@ -64,7 +67,7 @@ const Company = styled.div({
 const Title = styled.div({
   color: Color.Gray80,
   ...Mobile({
-    fontSize: "14px"
+    fontSize: "14px",
   }),
 });
 

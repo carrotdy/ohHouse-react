@@ -19,7 +19,8 @@ import 장바구니_상품 from "./장바구니_상품";
 const 장바구니: React.FunctionComponent = () => {
   const navigate = useNavigate();
 
-  const [cartItem, setCartItem] = useRecoilState<Array<ProductModel.IProductModel>>(CartState);
+  const [cartItem, setCartItem] =
+    useRecoilState<Array<ProductModel.IProductModel>>(CartState);
   const totalCount = useRecoilValue<number>(CartTotalCountState);
   const totalPrice = useRecoilValue<number>(CartTotalPriceState);
 
@@ -27,6 +28,11 @@ const 장바구니: React.FunctionComponent = () => {
     const data = JSON.parse(
       localStorage.getItem(LOCAL_STORAGE_KEY_CART) || "[]"
     );
+
+    if (data.length === 0) {
+      localStorage.setItem(LOCAL_STORAGE_KEY_CART, JSON.stringify([]));
+    }
+
     setCartItem(data);
   }, []);
 
