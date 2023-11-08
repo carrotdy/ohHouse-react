@@ -1,13 +1,13 @@
 import { FileAddOutlined } from "@ant-design/icons";
 import {
-  Button,
-  DatePicker,
-  Form,
-  Input,
-  Modal,
-  Select,
-  Upload,
-  UploadFile,
+	Button,
+	DatePicker,
+	Form,
+	Input,
+	Modal,
+	Select,
+	Upload,
+	UploadFile,
 } from "antd";
 import { UploadChangeParam } from "antd/lib/upload/interface";
 import dayjs from "dayjs";
@@ -16,13 +16,11 @@ import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
 import { RoutePath } from "../RoutePath";
 import { Container, Title } from "../components/Common";
 import { DepartmentType } from "../constants/data/DepartmentType";
 import { QuillEditor } from "../editor/QuillEditor";
 import { db } from "../firebase";
-import { isLoadingRecoil } from "../hooks/LoadingRecoil";
 import { DepartModel } from "../model/DepartmentModel";
 import { JobPostingModel } from "../model/JobPostingModel";
 
@@ -43,8 +41,7 @@ const 채용_수정 = () => {
   const [content, setContent] = useState<string>(career.content);
   const [posting, setPosting] =
     useState<JobPostingModel.IJobPostingModel>(career);
-
-  const [isLoading, setIsLoading] = useRecoilState<boolean>(isLoadingRecoil);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   //파일 업로드 처리
   const normFile = (e: UploadChangeParam) => {

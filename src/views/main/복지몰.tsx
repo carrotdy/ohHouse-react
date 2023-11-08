@@ -7,14 +7,12 @@ import DummyData from "../constants/data/DummyData";
 import { Color } from "../constants/style/Color";
 import { ProductModel } from "../model/ProductModel";
 import 복지몰_상품 from "./복지몰_상품";
-import { useRecoilState } from "recoil";
-import { isLoadingRecoil } from "../hooks/LoadingRecoil";
 
 const ITEMS_PER_PAGE = 6;
 
 const 복지몰: React.FunctionComponent = () => {
   const [visibleItems, setVisibleItems] = useState<number>(ITEMS_PER_PAGE); // 페이지당 보여줄 항목 수
-  const [isLoading, setIsLoading] = useRecoilState(isLoadingRecoil);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // 무한스크롤
   const handleScroll = () => {

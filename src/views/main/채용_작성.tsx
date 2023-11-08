@@ -1,20 +1,17 @@
 import { FileAddOutlined } from "@ant-design/icons";
 import { Button, DatePicker, Form, Input, Modal, Select, Upload } from "antd";
+import { UploadChangeParam, UploadFile } from "antd/es/upload";
 import dayjs from "dayjs";
 import { getAuth } from "firebase/auth";
 import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useMemo, useState } from "react";
-import { useRecoilState } from "recoil";
 import { RoutePath } from "../RoutePath";
 import { Container, Title } from "../components/Common";
 import { DepartmentType } from "../constants/data/DepartmentType";
 import { QuillEditor } from "../editor/QuillEditor";
 import { db } from "../firebase";
-import { isLoadingRecoil } from "../hooks/LoadingRecoil";
 import { DepartModel } from "../model/DepartmentModel";
-import { JobPostingModel } from "../model/JobPostingModel";
-import { UploadChangeParam, UploadFile } from "antd/es/upload";
 
 const 채용_작성 = () => {
   const data: Array<DepartModel.IDepartment> = useMemo(() => {
@@ -29,8 +26,7 @@ const 채용_작성 = () => {
   const [fileList, setFileList] = useState<
     { name: string; file: File | Blob }[]
   >([]);
-
-  const [isLoading, setIsLoading] = useRecoilState<boolean>(isLoadingRecoil);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   //파일 업로드 처리
   const normFile = (e: UploadChangeParam) => {
