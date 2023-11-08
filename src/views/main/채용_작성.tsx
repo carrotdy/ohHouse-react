@@ -12,11 +12,14 @@ import { DepartmentType } from "../constants/data/DepartmentType";
 import { QuillEditor } from "../editor/QuillEditor";
 import { db } from "../firebase";
 import { DepartModel } from "../model/DepartmentModel";
+import { useNavigate } from "react-router-dom";
 
 const 채용_작성 = () => {
   const data: Array<DepartModel.IDepartment> = useMemo(() => {
     return DepartmentType;
   }, []);
+
+  const navigate = useNavigate();
 
   const user = getAuth().currentUser;
   const { Option } = Select;
@@ -44,7 +47,7 @@ const 채용_작성 = () => {
           getDownloadURL(snapshot.ref).then(() => {});
         })
         .catch((error) => {
-          console.error("error: ", error);
+          console.error("error", error);
         });
 
       return {
@@ -82,29 +85,25 @@ const 채용_작성 = () => {
       okText: "확인",
       cancelText: "취소",
       onOk: async () => {
-        form
-          .validateFields()
-          .then(async (values) => {
-            const docRef = await addDoc(collection(db, "job-posting"), {
-              ...values,
-              userUid: user?.uid,
-              date: dayjs(values.date).format("YYYY-MM-DD HH:mm:ss"),
-              isClose: false,
-              fileNames: fileList.map((file) => file.name),
-            });
+        try {
+          const values = await form.validateFields();
 
-            // 고유한 postId 생성
-            const postId = docRef.id;
-            await updateDoc(docRef, { postId: postId });
-
-            window.location.href = RoutePath.채용.path;
-          })
-          .catch((error) => {
-            console.log("error", error);
-          })
-          .finally(() => {
-            setIsLoading(false);
+          const docRef = await addDoc(collection(db, "job-posting"), {
+            ...values,
+            userUid: user?.uid,
+            date: dayjs(values.date).format("YYYY-MM-DD HH:mm:ss"),
+            isClose: false,
+            fileNames: fileList.map((file) => file.name),
           });
+
+          // 고유한 postId 생성
+          const postId = docRef.id;
+          await updateDoc(docRef, { postId: postId });
+		  
+          navigate(RoutePath.채용.path);
+        } catch (error) {
+          console.log("validation error:", error);
+        }
       },
       onCancel: () => {
         setIsLoading(false);

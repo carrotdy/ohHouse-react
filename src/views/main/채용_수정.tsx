@@ -1,13 +1,13 @@
 import { FileAddOutlined } from "@ant-design/icons";
 import {
-	Button,
-	DatePicker,
-	Form,
-	Input,
-	Modal,
-	Select,
-	Upload,
-	UploadFile,
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  Modal,
+  Select,
+  Upload,
+  UploadFile,
 } from "antd";
 import { UploadChangeParam } from "antd/lib/upload/interface";
 import dayjs from "dayjs";
@@ -50,25 +50,25 @@ const 채용_수정 = () => {
       contentType: e.file.type,
     };
 
+    const newFileNames = [...posting.fileNames];
+
     e.fileList.forEach((fileItem: UploadFile) => {
       const fileData = fileItem.originFileObj as File | Blob;
       const imagesRef = ref(storage, `images/job-posting/${fileItem.name}`);
-      const file = {
-        name: fileItem.name,
-        file: fileData,
-      };
 
-      if (!posting.fileNames.includes(file.name)) {
-        setPosting((prevPosting) => ({
-          ...prevPosting,
-          fileNames: [...prevPosting.fileNames, file.name],
-        }));
+      if (!newFileNames.includes(fileItem.name)) {
+        newFileNames.push(fileItem.name); // 중복 파일이 아닐 경우 목록에 추가
 
         uploadBytes(imagesRef, fileData, metadata).then((snapshot) => {
           getDownloadURL(snapshot.ref).then(() => {});
         });
       }
     });
+
+    setPosting((prevPosting) => ({
+      ...prevPosting,
+      fileNames: newFileNames,
+    }));
   };
 
   const handleContent = (htmlContent: string) => {
@@ -102,28 +102,27 @@ const 채용_수정 = () => {
       cancelText: "취소",
       onOk: async () => {
         setIsLoading(true);
-        form
-          .validateFields()
-          .then(async (values) => {
-            const updateRef = CollectionRef;
-            const updatedData = {
-              ...values,
-              userUid: user?.uid,
-              date: dayjs(values.date).format("YYYY-MM-DD HH:mm:ss"),
-              content,
-              isClose: false,
-              fileNames: posting.fileNames,
-            };
+        try {
+          const values = await form.validateFields();
 
-            updateDoc(updateRef, updatedData).then(() => {
-              setIsLoading(false);
-              navigate(RoutePath.채용.path);
-            });
-          })
-          .catch((error) => {
+          const updateRef = CollectionRef;
+          const updatedData = {
+            ...values,
+            userUid: user?.uid,
+            date: dayjs(values.date).format("YYYY-MM-DD HH:mm:ss"),
+            content,
+            isClose: false,
+            fileNames: posting.fileNames,
+          };
+
+          updateDoc(updateRef, updatedData).then(() => {
             setIsLoading(false);
-            console.log("error", error);
+            navigate(RoutePath.채용.path);
           });
+        } catch (error) {
+          setIsLoading(false);
+          console.error("validation error:", error);
+        }
       },
       onCancel: () => {
         setIsLoading(false);
@@ -214,13 +213,13 @@ const 채용_수정 = () => {
             label={"첨부파일"}
             name="fileNames"
             valuePropName="fileList"
-            getValueFromEvent={normFile}
             style={{ marginTop: "80px" }}
           >
             <p style={{ color: "red", fontSize: "12px", marginTop: 0 }}>
               (파일은 최대 5개까지 첨부 가능)
             </p>
             <Upload
+              onChange={normFile}
               beforeUpload={(file) => {
                 const maxSize = 10 * 1024 * 1024; //10mb
                 if (file.size > maxSize) {
