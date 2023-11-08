@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Mobile, Tablet } from "../utils/CssUtil";
 import { Color } from "../constants/style/Color";
+import { Mobile, Tablet } from "../utils/CssUtil";
 
 export const Footer: React.FunctionComponent = () => {
   return (

@@ -19,6 +19,7 @@ import { Color } from "../constants/style/Color";
 import { db } from "../firebase";
 import { JobPostingModel } from "../model/JobPostingModel";
 import { Mobile } from "../utils/CssUtil";
+import { getAuth } from "firebase/auth";
 
 const 채용: React.FunctionComponent = () => {
   const [career, setCareer] = useState<Array<JobPostingModel.IJobPostingModel>>(
@@ -28,6 +29,8 @@ const 채용: React.FunctionComponent = () => {
 
   const navigate = useNavigate();
   const CollectionRef = collection(db, "job-posting");
+
+  const user = getAuth().currentUser;
 
   //채용정보 가져오기
   const getJobPosting = async () => {
@@ -70,16 +73,18 @@ const 채용: React.FunctionComponent = () => {
           <br />
           당신의 도전이 새로운 미래를 만듭니다.
         </SubTitle>
-        <Button
-          text={`작성`}
-          type={"normal"}
-          size={"small"}
-          width={24}
-          onClick={() => {
-            navigate(RoutePath.채용작성.path);
-          }}
-          style={{ height: "12px", alignSelf: "end" }}
-        />
+        {user && (
+          <Button
+            text={`작성`}
+            type={"normal"}
+            size={"small"}
+            width={24}
+            onClick={() => {
+              navigate(RoutePath.채용작성.path);
+            }}
+            style={{ height: "12px", alignSelf: "end" }}
+          />
+        )}
       </div>
       <BorderBottomLineGray80 style={{ borderWidth: "2px" }} />
       {isLoading ? (

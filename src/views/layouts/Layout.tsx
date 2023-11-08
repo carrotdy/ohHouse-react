@@ -1,7 +1,6 @@
 import { FunctionComponent, ReactNode } from "react";
-import Navbar from "../common/Navbar";
 import { Footer } from "../common/Footer";
-import ScrollToTop from "../components/ScrollToTop";
+import Navbar from "../common/Navbar";
 
 interface IProps {
   children: ReactNode;
@@ -12,7 +11,6 @@ export const Layout: FunctionComponent<IProps> = (props: IProps) => {
     <>
       <Navbar />
       {props.children}
-      <ScrollToTop />
       <Footer />
     </>
   );

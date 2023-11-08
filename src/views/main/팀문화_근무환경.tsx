@@ -35,7 +35,6 @@ const 팀문화_근무환경 = () => {
           );
         })}
       </TeamCultureConatiner>
-      <BorderBottomLineGray30 />
     </>
   );
 };
