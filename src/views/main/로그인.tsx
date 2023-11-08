@@ -6,7 +6,7 @@ import { RoutePath } from "../RoutePath";
 import Button from "../components/Button";
 import { Container } from "../components/Common";
 import InputForm from "../components/InputForm";
-import { isLoadingRecoil } from "../hooks/AuthRecoil";
+import { isLoadingRecoil } from "../hooks/LoadingRecoil";
 
 const 로그인 = () => {
   const [email, setEmail] = useState<string>("");

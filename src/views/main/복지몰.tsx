@@ -7,14 +7,16 @@ import DummyData from "../constants/data/DummyData";
 import { Color } from "../constants/style/Color";
 import { ProductModel } from "../model/ProductModel";
 import 복지몰_상품 from "./복지몰_상품";
+import { useRecoilState } from "recoil";
+import { isLoadingRecoil } from "../hooks/LoadingRecoil";
 
 const ITEMS_PER_PAGE = 6;
 
 const 복지몰: React.FunctionComponent = () => {
   const [visibleItems, setVisibleItems] = useState<number>(ITEMS_PER_PAGE); // 페이지당 보여줄 항목 수
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useRecoilState(isLoadingRecoil);
 
-  // 스크롤 이벤트 핸들러
+  // 무한스크롤
   const handleScroll = () => {
     if (isLoading) return;
 
@@ -57,9 +59,8 @@ const 복지몰: React.FunctionComponent = () => {
       </ProductCardContainer>
       {isLoading && (
         <>
-          {visibleItems >= DummyData.length 
-		  ? null 
-		  : ( <div style={{ textAlign: "center", margin: "10px 0" }}>
+          {visibleItems >= DummyData.length ? null : (
+            <div style={{ textAlign: "center", margin: "10px 0" }}>
               <SyncLoader color={Color.Orange} />
             </div>
           )}

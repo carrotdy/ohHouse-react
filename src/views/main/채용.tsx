@@ -5,18 +5,20 @@ import { isEmpty } from "lodash-es";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { RoutePath } from "../RoutePath";
 import Button from "../components/Button";
 import {
-  BorderBottomLineGray30,
-  BorderBottomLineGray80,
-  Container,
-  SubTitle,
-  Title,
+	BorderBottomLineGray30,
+	BorderBottomLineGray80,
+	Container,
+	SubTitle,
+	Title,
 } from "../components/Common";
 import { Color } from "../constants/style/Color";
 import { db } from "../firebase";
+import { isLoadingRecoil } from "../hooks/LoadingRecoil";
 import { JobPostingModel } from "../model/JobPostingModel";
 import { Mobile } from "../utils/CssUtil";
 
@@ -24,7 +26,7 @@ const 채용: React.FunctionComponent = () => {
   const [career, setCareer] = useState<Array<JobPostingModel.IJobPostingModel>>(
     []
   );
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useRecoilState(isLoadingRecoil);
 
   const navigate = useNavigate();
   const CollectionRef = collection(db, "job-posting");

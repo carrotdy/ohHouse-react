@@ -11,7 +11,7 @@ import { Container, Title } from "../components/Common";
 import { DepartmentType } from "../constants/data/DepartmentType";
 import { QuillEditor } from "../editor/QuillEditor";
 import { db } from "../firebase";
-import { isLoadingRecoil } from "../hooks/AuthRecoil";
+import { isLoadingRecoil } from "../hooks/LoadingRecoil";
 import { DepartModel } from "../model/DepartmentModel";
 import { JobPostingModel } from "../model/JobPostingModel";
 import { UploadChangeParam, UploadFile } from "antd/es/upload";
