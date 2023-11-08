@@ -1,4 +1,5 @@
 ## ✏️OhHouse Homepage
+https://ohhouse.netlify.app/
 <br/>
 
 ## 💫핵심 기능
@@ -96,12 +97,3 @@ typescript: 4.9.5<br/>
 - styled-components: 6.1.0<br/>
 - antd: 5.10.3<br/>
 - sass: 1.68.0<br/>
-  
-<br/>
-
-## Run
-
-```
-npm start
-```
-<br/>
