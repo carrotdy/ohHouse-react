@@ -50,6 +50,9 @@ const TeamCultureConatiner = styled.div`
 const TeamCulture = styled.div`
   width: 50%;
   margin-bottom: 50px;
+  @media (max-width: 541px) {
+    width: 100%;
+  }
 `;
 
 const TeamCultureNumber = styled.h1`

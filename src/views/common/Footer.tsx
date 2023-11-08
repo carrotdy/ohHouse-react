@@ -1,35 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import { Color } from "../constants/style/Color";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 import { Mobile, Tablet } from "../utils/CssUtil";
 
 export const Footer: React.FunctionComponent = () => {
   return (
-    <>
-      <BorderTopLineGray30 />
-      <FooterContainer>
-        <Title>(주)오하우스</Title>
-        <Contents>대표이사: 홍다영</Contents>
-        <Contents>
-          주소 : 서울특별시 강남구 강남대로7 |{" "}
-          <span>문의전화 : 02-000-0000 | 팩스 : 02-000-0000</span>
-        </Contents>
-      </FooterContainer>
-    </>
+    <FooterContainer>
+      <Title>(주)오하우스</Title>
+      <Contents>대표이사: 홍다영</Contents>
+      <Contents>
+        주소 : 서울특별시 강남구 강남대로7 |{" "}
+        <span>문의전화 : 02-000-0000 | 팩스 : 02-000-0000</span>
+      </Contents>
+      <ScrollToTopButton />
+    </FooterContainer>
   );
 };
-
-const BorderTopLineGray30 = styled.div({
-  borderTop: `1px solid ${Color.Gray30}`,
-  maxWidth: "1400px",
-  margin: "auto",
-  ...Tablet({
-    maxWidth: "1150px",
-  }),
-  ...Mobile({
-    maxWidth: "768px",
-  }),
-});
 
 const FooterContainer = styled.footer({
   maxWidth: "1400px",
