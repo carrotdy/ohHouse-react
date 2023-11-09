@@ -1,9 +1,9 @@
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import Main from "./views/Main";
-import { AuthProvider } from "./views/context/AuthProvider";
-import { Layout } from "./views/layouts/Layout";
-import { ScrollToTop } from "./views/components/Common";
+import Main from "./Main";
+import { AuthProvider } from "./context/AuthProvider";
+import { Layout } from "./layouts/Layout";
+import { ScrollToTop } from "./components/Common";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
