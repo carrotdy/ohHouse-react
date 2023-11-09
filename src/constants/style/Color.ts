@@ -37,7 +37,7 @@ export enum Color {
 
 	Orange = '#FC9343',
 
-	MainClolor = '#fc6a03', 
+	MainColor = '#fc6a03', 
 
     Red80 = '#FF5D5D',
     Red100 = '#ca2032',

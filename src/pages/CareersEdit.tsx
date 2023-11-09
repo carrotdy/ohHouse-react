@@ -1,6 +1,5 @@
 import { FileAddOutlined } from "@ant-design/icons";
 import {
-  Button,
   DatePicker,
   Form,
   Input,
@@ -18,11 +17,13 @@ import { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { RoutePath } from "../RoutePath";
 import { Container, Title } from "../components/Common";
-import { DepartmentType } from "../constants/data/DepartmentType";
 import { QuillEditor } from "../components/QuillEditor";
-import { db } from "../firebase";
+import { DepartmentType } from "../constants/data/DepartmentType";
 import { DepartModel } from "../constants/model/DepartmentModel";
 import { JobPostingModel } from "../constants/model/JobPostingModel";
+import { db } from "../firebase";
+import Button from "../components/Button";
+import { Color } from "../constants/style/Color";
 
 const CareersEdit = () => {
   const career = useLocation().state as JobPostingModel.IJobPostingModel;
@@ -237,9 +238,13 @@ const CareersEdit = () => {
                 showRemoveIcon: false,
               }}
             >
-              <Button loading={isLoading} icon={<FileAddOutlined />}>
-                파일 업로드
-              </Button>
+              <Button
+                loading={isLoading}
+                text="파일 업로드"
+                type={"default"}
+                icon={<FileAddOutlined />}
+                style={{ borderColor: Color.Gray60 }}
+              />
             </Upload>
           </Form.Item>
           {posting.fileNames && (
@@ -257,15 +262,13 @@ const CareersEdit = () => {
                     <p>{name ? name : ""}</p>
                     <Button
                       key={index}
-                      danger
+                      type="default"
+                      text="삭제"
                       style={{
                         marginBottom: "7px",
                       }}
-                      type="default"
                       onClick={() => handleDeleteJobPosting(name)}
-                    >
-                      삭제
-                    </Button>
+                    />
                   </div>
                 );
               })}
@@ -273,7 +276,8 @@ const CareersEdit = () => {
           )}
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Button
-              danger
+              text="삭제"
+              type="default"
               onClick={deleteJobPosting}
               style={{
                 marginBottom: "40px",
@@ -281,11 +285,11 @@ const CareersEdit = () => {
                 width: "100px",
                 height: "40px",
               }}
-            >
-              삭제
-            </Button>
+            />
             <Button
+              type="default"
               htmlType="submit"
+              text="수정"
               style={{
                 marginBottom: "40px",
                 marginTop: "20px",
@@ -293,9 +297,7 @@ const CareersEdit = () => {
                 height: "40px",
                 marginLeft: "10px",
               }}
-            >
-              수정
-            </Button>
+            />
           </div>
         </Form>
       )}

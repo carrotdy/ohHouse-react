@@ -4,8 +4,8 @@ import { SyncLoader } from "react-spinners";
 import styled from "styled-components";
 import { Container, SubTitle, Title } from "../components/Common";
 import DummyData from "../constants/data/DummyData";
-import { Color } from "../constants/style/Color";
 import { ProductModel } from "../constants/model/ProductModel";
+import { Color } from "../constants/style/Color";
 import WelfareProduct from "./WelfareProduct";
 
 const ITEMS_PER_PAGE = 6;
@@ -68,11 +68,11 @@ const Welfare: React.FunctionComponent = () => {
   );
 };
 
-const ProductCardContainer = styled.div({
-  display: "flex",
-  flexWrap: "wrap",
-  gap: "12px",
-  justifyContent: "center",
-});
+const ProductCardContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+`;
 
 export default Welfare;

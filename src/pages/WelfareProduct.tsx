@@ -1,9 +1,9 @@
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { Color } from "../constants/style/Color";
-import { CartState } from "../recoil/CartRecoil";
 import { ShoppingCartSVG } from "../assets/images/svg";
 import { ProductModel } from "../constants/model/ProductModel";
+import { Color } from "../constants/style/Color";
+import { CartState } from "../recoil/CartRecoil";
 
 interface IProps {
   data: ProductModel.IProductModel;
@@ -25,12 +25,12 @@ const WelfareProduct: React.FC<IProps> = ({ data, index }) => {
   };
 
   return (
-    <Wrapper>
-      <img src={image} style={{ borderRadius: "12px" }} />
+    <ProductContainer>
+      <ProductImage src={image} />
       <Badge>
-        <div>{index + 1}</div>
+        <BadgeContent>{index + 1}</BadgeContent>
       </Badge>
-      <div style={{ position: "relative" }}>
+      <ShoppingCartButton>
         <ShoppingCartSVG
           width={28}
           height={28}
@@ -38,44 +38,57 @@ const WelfareProduct: React.FC<IProps> = ({ data, index }) => {
           onClick={addToCart}
           style={{ position: "absolute", bottom: 10, right: 10 }}
         />
-      </div>
+      </ShoppingCartButton>
       <Company>{company}</Company>
-      <CompanyTitle>{title}</CompanyTitle>
-      <CompanyPoint>{`${point.toLocaleString()} 원`}</CompanyPoint>
-    </Wrapper>
+      <ProductTitle>{title}</ProductTitle>
+      <ProductPoint>{`${point.toLocaleString()} 원`}</ProductPoint>
+    </ProductContainer>
   );
 };
 
-const Wrapper = styled.div({
-  width: "300px",
-  padding: "16px",
-  display: "flex",
-  flexDirection: "column",
-  cursor: "pointer",
-});
+const ProductContainer = styled.div`
+  width: 300px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+`;
 
-const Badge = styled.div({
-  position: "absolute",
-  display: "inline-block",
-  backgroundColor: Color.Orange,
-  color: Color.Gray10,
-  padding: "8px 14px",
-  borderRadius: "10px",
-  fontSize: "14px",
-});
+const ProductImage = styled.img`
+  border-radius: 12px;
+`;
 
-const Company = styled.div({
-  margin: "10px 0",
-  fontSize: "12px",
-  color: Color.Gray60,
-});
+const Badge = styled.div`
+  position: absolute;
+  display: inline-block;
+  background-color: ${Color.Orange};
+  color: ${Color.Gray10};
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+`;
 
-const CompanyTitle = styled.div({
-  color: Color.Gray80,
-});
+const BadgeContent = styled.div``;
 
-const CompanyPoint = styled.div({
-  margin: "2px 0 10px 0",
-});
+const Company = styled.div`
+  margin: 10px 0;
+  font-size: 12px;
+  color: ${Color.Gray60};
+`;
+
+const ProductTitle = styled.div`
+  color: ${Color.Gray80};
+`;
+
+const ProductPoint = styled.div`
+  margin: 2px 0 10px 0;
+`;
+
+const ShoppingCartButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+`;
 
 export default WelfareProduct;

@@ -1,5 +1,6 @@
 import { Tag } from "antd";
 import dayjs from "dayjs";
+import { getAuth } from "firebase/auth";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { isEmpty } from "lodash-es";
 import { useEffect, useState } from "react";
@@ -9,17 +10,16 @@ import styled from "styled-components";
 import { RoutePath } from "../RoutePath";
 import Button from "../components/Button";
 import {
-  BorderBottomLineGray30,
-  BorderBottomLineGray80,
-  Container,
-  SubTitle,
-  Title,
+	BorderBottomLineGray30,
+	BorderBottomLineGray80,
+	Container,
+	SubTitle,
+	Title,
 } from "../components/Common";
+import { JobPostingModel } from "../constants/model/JobPostingModel";
 import { Color } from "../constants/style/Color";
 import { db } from "../firebase";
-import { JobPostingModel } from "../constants/model/JobPostingModel";
 import { Mobile } from "../utils/CssUtil";
-import { getAuth } from "firebase/auth";
 
 const Careers: React.FunctionComponent = () => {
   const [career, setCareer] = useState<Array<JobPostingModel.IJobPostingModel>>(
@@ -59,16 +59,10 @@ const Careers: React.FunctionComponent = () => {
   }, []);
 
   return (
-    <Container style={{ paddingBottom: "30px" }}>
+    <Container>
       <Title>채용공고</Title>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: "10px",
-        }}
-      >
-        <SubTitle style={{ marginBottom: "10px" }}>
+      <CareerSection>
+        <SubTitle>
           모두의 삶을 함께 바꿔나갈 기회,
           <br />
           당신의 도전이 새로운 미래를 만듭니다.
@@ -76,16 +70,14 @@ const Careers: React.FunctionComponent = () => {
         {user && (
           <Button
             text={`작성`}
-            type={"normal"}
-            size={"small"}
-            width={24}
+            type={`default`}
             onClick={() => {
               navigate(RoutePath.CareersCreate.path);
             }}
-            style={{ height: "12px", alignSelf: "end" }}
+            style={{ marginBottom: "10px" }}
           />
         )}
-      </div>
+      </CareerSection>
       <BorderBottomLineGray80 style={{ borderWidth: "2px" }} />
       {isLoading ? (
         <LoadingBar>
@@ -101,7 +93,7 @@ const Careers: React.FunctionComponent = () => {
             const day = dayjs(item.date).diff(dayjs(), "day");
 
             return (
-              <div key={item.postId}>
+              <li key={item.postId} style={{ listStyle: "none" }}>
                 <JobPostingContainer
                   onClick={() => {
                     navigate(RoutePath.CareersDetail.path, {
@@ -134,19 +126,18 @@ const Careers: React.FunctionComponent = () => {
                   </TextContainer>
                   <Button
                     text={item.isClose ? `채용마감` : `채용중`}
-                    type={"primary"}
-                    size={"medium"}
-                    width={80}
+                    type={`primary`}
                     disabled={item.isClose}
                     onClick={() => {
                       navigate(RoutePath.CareersDetail.path, {
                         state: { ...item },
                       });
                     }}
+                    style={{ width: "100px", height: "36px" }}
                   />
                 </JobPostingContainer>
                 {career.length - 1 !== index && <BorderBottomLineGray30 />}
-              </div>
+              </li>
             );
           })}
         </>
@@ -155,59 +146,66 @@ const Careers: React.FunctionComponent = () => {
   );
 };
 
-const TextContainer = styled.div({
-  marginRight: "36px",
-  ...Mobile({
-    marginRight: 0,
-  }),
-});
+const CareerSection = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+`;
 
-const PostingTitle = styled.div({
-  color: Color.Gray80,
-  fontSize: "26px",
-  fontWeight: "bold",
-  display: "inlineBlock",
-  lineHeight: "40px",
-  ...Mobile({
+const TextContainer = styled.div`
+  margin-right: 36px;
+  ${Mobile({
+    margin: "0",
+  })}
+`;
+
+const PostingTitle = styled.h2`
+  color: ${Color.Gray80};
+  font-size: 26px;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 40px;
+  margin: 0px;
+  ${Mobile({
     fontSize: "16px",
     lineHeight: "26px",
-  }),
-});
+  })}
+`;
 
-const SubTitleContainer = styled.div({
-  display: "flex",
-});
+const SubTitleContainer = styled.div`
+  display: flex;
+`;
 
-const JobPostingContainer = styled.div({
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  padding: "60px 0",
-  cursor: "pointer",
-  ...Mobile({
+const JobPostingContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 52px 0;
+  cursor: pointer;
+  ${Mobile({
     display: "grid",
     padding: "40px 0",
-  }),
-});
+  })}
+`;
 
-const Date = styled.div({
-  fontSize: "18px",
-  fontWeight: "bold",
-  marginRight: "10px",
-  color: Color.Red100,
-  ...Mobile({
+const Date = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+  color: ${Color.Red100};
+  ${Mobile({
     fontSize: "12px",
     lineHeight: "20px",
-  }),
-});
+  })}
+`;
 
-const LoadingBar = styled.div({
-  textAlign: "center",
-  margin: "10px 0",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  height: "100vh",
-});
+const LoadingBar = styled.div`
+  text-align: center;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`;
 
 export default Careers;

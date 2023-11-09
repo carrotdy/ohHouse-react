@@ -1,9 +1,9 @@
 import { FunctionComponent, ReactNode } from "react";
+import styled from "styled-components";
 import { Footer } from "../components/Footer";
 import Navbar from "../components/Navbar";
-import styled from "styled-components";
-import { Tablet, Mobile } from "../utils/CssUtil";
 import { Color } from "../constants/style/Color";
+import { Mobile, Tablet } from "../utils/CssUtil";
 
 interface IProps {
   children: ReactNode;
@@ -20,14 +20,15 @@ export const Layout: FunctionComponent<IProps> = (props: IProps) => {
   );
 };
 
-const BorderTopLineGray30 = styled.div({
-  borderTop: `1px solid ${Color.Gray30}`,
-  maxWidth: "1400px",
-  margin: "auto",
-  ...Tablet({
+const BorderTopLineGray30 = styled.div`
+  border-top: 1px solid ${Color.Gray30};
+  max-width: 1400px;
+  margin: auto;
+  
+  ${Tablet({
     maxWidth: "1150px",
-  }),
-  ...Mobile({
+  })}
+  ${Mobile({
     maxWidth: "768px",
-  }),
-});
+  })}
+`;

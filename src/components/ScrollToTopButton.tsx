@@ -38,7 +38,7 @@ const ScrollToTop = styled.button`
   width: 50px;
   height: 50px;
   position: fixed;
-  background-color: ${Color.MainClolor};
+  background-color: ${Color.MainColor};
   color: ${Color.Gray10};
   border: none;
   border-radius: 50%;

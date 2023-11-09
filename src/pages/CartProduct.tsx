@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import Button from "../components/Button";
+import { Title } from "../components/Common";
 import { LOCAL_STORAGE_KEY_CART } from "../constants/localstorage/localStorageKeys";
+import { ProductModel } from "../constants/model/ProductModel";
 import { Color } from "../constants/style/Color";
 import { CartState } from "../recoil/CartRecoil";
-import { ProductModel } from "../constants/model/ProductModel";
 import { Mobile } from "../utils/CssUtil";
 
 interface IProduct {
@@ -30,53 +31,58 @@ const CartProduct: React.FC<IProduct> = ({ data }) => {
   }, [cartItem]);
 
   return (
-    <div style={{ display: "flex", marginTop: "20px", alignItems: "center" }}>
-      <img
-        src={image}
-        style={{
-          borderRadius: "12px",
-          width: "100px",
-          height: "100px",
-          marginRight: "10px",
-        }}
-      />
-      <div>
+    <ProductContainer>
+      <ProductImage src={image} />
+      <ProductInfo>
         <Title>{title}</Title>
-        <Company>{company}</Company>
-      </div>
-      <div style={{ marginLeft: "auto" }}>
-        <CompanyPoint>{`${point.toLocaleString()} 원`}</CompanyPoint>
+        <ProductCompany>{company}</ProductCompany>
+      </ProductInfo>
+      <ProductActions>
+        <ProductPrice>{`${point.toLocaleString()} 원`}</ProductPrice>
         <Button
           text={"삭제"}
           type={"primary"}
-          size={"small"}
-          width={60}
           onClick={handleClickDelete}
+          style={{ width: "60px" }}
         />
-      </div>
-    </div>
+      </ProductActions>
+    </ProductContainer>
   );
 };
 
-const Company = styled.div({
-  marginTop: "8px",
-  fontSize: "12px",
-  color: Color.Gray60,
-});
+const ProductContainer = styled.div`
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+`;
 
-const Title = styled.div({
-  color: Color.Gray80,
-  ...Mobile({
-    fontSize: "14px",
-  }),
-});
+const ProductImage = styled.img`
+  border-radius: 12px;
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+`;
 
-const CompanyPoint = styled.div({
-  marginBottom: "8px",
-  textAlign: "end",
-  ...Mobile({
+const ProductInfo = styled.div`
+  flex: 1;
+`;
+
+const ProductCompany = styled.div`
+  margin-top: 8px;
+  font-size: 12px;
+  color: ${Color.Gray60};
+`;
+
+const ProductActions = styled.div`
+  margin-left: auto;
+`;
+
+const ProductPrice = styled.div`
+  margin-bottom: 8px;
+  text-align: end;
+  ${Mobile({
     fontSize: "14px",
-  }),
-});
+  })}
+`;
 
 export default CartProduct;

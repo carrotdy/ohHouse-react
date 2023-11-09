@@ -1,21 +1,21 @@
 import { FileAddOutlined } from "@ant-design/icons";
-import { Button, Tag } from "antd";
+import { Tag } from "antd";
 import dayjs from "dayjs";
+import { getAuth } from "firebase/auth";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { RoutePath } from "../RoutePath";
+import Button from "../components/Button";
 import {
-  BorderBottomLineGray80,
-  Container,
-  SubTitle,
-  Title,
+	BorderBottomLineGray80,
+	Container,
+	SubTitle,
+	Title,
 } from "../components/Common";
+import { JobPostingModel } from "../constants/model/JobPostingModel";
 import { Color } from "../constants/style/Color";
 import { Mobile } from "../utils/CssUtil";
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import { JobPostingModel } from "../constants/model/JobPostingModel";
-import EditButton from "../components/Button";
-import { RoutePath } from "../RoutePath";
-import { getAuth } from "firebase/auth";
 
 const CareersDetail: React.FunctionComponent = () => {
   const career = useLocation().state as JobPostingModel.IJobPostingModel;
@@ -60,33 +60,18 @@ const CareersDetail: React.FunctionComponent = () => {
           ~{dayjs(career.date).format("YYYY.MM.DD")}
         </SubTitle>
       </SubTitleContainer>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "10px",
-        }}
-      >
-        <div>
-          {career.department.map((depart: string, index: number) => {
-            return (
-              <Tag
-                key={`${career.postId} + ${index}`}
-                className="post-department"
-                color="geekblue"
-              >
-                {depart}
-              </Tag>
-            );
-          })}
-        </div>
+      <DepartmentTagsContainer>
+        {career.department.map((depart: string, index: number) => {
+          return (
+            <Tag key={`${career.postId} + ${index}`} color="geekblue">
+              {depart}
+            </Tag>
+          );
+        })}
         {user?.uid === career.userUid && (
-          <EditButton
+          <Button
             text={`수정`}
-            type={"normal"}
-            size={"small"}
-            width={24}
+            type={`default`}
             onClick={() => {
               navigate(RoutePath.CareersEdit.path, {
                 state: { ...career },
@@ -94,47 +79,70 @@ const CareersDetail: React.FunctionComponent = () => {
             }}
           />
         )}
-      </div>
+      </DepartmentTagsContainer>
       <BorderBottomLineGray80 />
-      <div
+      <Content
         dangerouslySetInnerHTML={{
           __html: career.content,
         }}
         style={{ margin: "30px 0", minHeight: "300px" }}
       />
       {career.fileNames && career.fileNames.length > 0 && (
-        <div style={{ display: "inline-grid" }}>
-          <p>* 첨부파일</p>
+        <AttachmentsContainer>
+          <AttachmentTitle>* 첨부파일</AttachmentTitle>
           {career.fileNames.map((fileName, index) => (
             <Button
               key={index}
               download
+              type={"default"}
               icon={<FileAddOutlined />}
+              text={fileName}
               onClick={() => fileDownLoad(fileName)}
               style={{ marginBottom: "6px" }}
-            >
-              {fileName}
-            </Button>
+            />
           ))}
-        </div>
+        </AttachmentsContainer>
       )}
     </Container>
   );
 };
 
-const SubTitleContainer = styled.div({
-  display: "flex",
-});
+const SubTitleContainer = styled.div`
+  display: flex;
+`;
 
-const Date = styled.div({
-  fontSize: "18px",
-  fontWeight: "bold",
-  marginRight: "10px",
-  color: Color.Red100,
-  ...Mobile({
+const Date = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+  color: ${Color.Red100};
+  ${Mobile({
     fontSize: "12px",
     lineHeight: "20px",
-  }),
-});
+  })}
+`;
+
+const DepartmentTagsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const Content = styled.div`
+  min-height: 300px;
+  margin: 30px 0;
+`;
+
+const AttachmentsContainer = styled.div`
+  display: inline-grid;
+  margin-top: 20px;
+`;
+
+const AttachmentTitle = styled.p`
+  color: ${Color.Gray80};
+  font-size: 14px;
+  margin-top: 0;
+`;
 
 export default CareersDetail;

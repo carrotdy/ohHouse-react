@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import {
-  BorderBottomLineGray30,
-  Container,
-  SubTitle,
-  Title,
+	BorderBottomLineGray30,
+	Container,
+	SubTitle,
+	Title,
 } from "../components/Common";
 import IntroduceCompany from "../constants/data/IntroduceCompany";
 import { Mobile, Tablet } from "../utils/CssUtil";
@@ -29,15 +29,13 @@ const IntroCompany: React.FunctionComponent = () => {
               data-aos="fade-up"
               data-aos-delay={200}
             >
-              <IntroductionCompanyDetailContainer
-                style={{ whiteSpace: "pre-line" }}
-              >
+              <CustomStyledContainer style={{ whiteSpace: "pre-line" }}>
                 <ContentImage src={item.image} />
                 <DetailTitleContainer>
                   <Title>{item.title}</Title>
                   <SubTitle>{item.description}</SubTitle>
                 </DetailTitleContainer>
-              </IntroductionCompanyDetailContainer>
+              </CustomStyledContainer>
               {IntroduceCompany.length - 1 !== index && (
                 <BorderBottomLineGray30 />
               )}
@@ -49,37 +47,37 @@ const IntroCompany: React.FunctionComponent = () => {
   );
 };
 
-const IntroductionCompanyDetailContainer = styled.div({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  padding: "100px 0",
-  ...Tablet({
+const CustomStyledContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 0;
+  ${Tablet({
     display: "grid",
     padding: "60px 0",
-  }),
-  ...Mobile({
+  })}
+  ${Mobile({
     display: "grid",
     padding: "30px 0",
-  }),
-});
+  })}
+`;
 
-const DetailTitleContainer = styled.div({});
+const DetailTitleContainer = styled.div``;
 
-const ContentImage = styled.img({
-  width: "460px",
-  height: "320px",
-  marginRight: "60px",
-  ...Tablet({
+const ContentImage = styled.img`
+  width: 460px;
+  height: 320px;
+  margin-right: 60px;
+  ${Tablet({
     width: "520px",
     height: "360px",
     marginRight: 0,
-  }),
-  ...Mobile({
+  })}
+  ${Mobile({
     width: "350px",
     height: "243px",
     marginRight: 0,
-  }),
-});
+  })}
+`;
 
 export default IntroCompany;

@@ -1,18 +1,20 @@
 import { FileAddOutlined } from "@ant-design/icons";
-import { Button, DatePicker, Form, Input, Modal, Select, Upload } from "antd";
+import { DatePicker, Form, Input, Modal, Select, Upload } from "antd";
 import { UploadChangeParam, UploadFile } from "antd/es/upload";
 import dayjs from "dayjs";
 import { getAuth } from "firebase/auth";
 import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { RoutePath } from "../RoutePath";
 import { Container, Title } from "../components/Common";
-import { DepartmentType } from "../constants/data/DepartmentType";
 import { QuillEditor } from "../components/QuillEditor";
-import { db } from "../firebase";
+import { DepartmentType } from "../constants/data/DepartmentType";
 import { DepartModel } from "../constants/model/DepartmentModel";
-import { useNavigate } from "react-router-dom";
+import { db } from "../firebase";
+import Button from "../components/Button";
+import { Color } from "../constants/style/Color";
 
 const CareersCreate = () => {
   const data: Array<DepartModel.IDepartment> = useMemo(() => {
@@ -198,9 +200,13 @@ const CareersCreate = () => {
               return true;
             }}
           >
-            <Button loading={isLoading} icon={<FileAddOutlined />}>
-              파일 업로드
-            </Button>
+            <Button
+              type="default"
+              loading={isLoading}
+              text="파일 업로드"
+              icon={<FileAddOutlined />}
+              style={{ borderColor: Color.Gray60 }}
+            />
           </Upload>
         </Form.Item>
         {fileList && (
@@ -218,15 +224,13 @@ const CareersCreate = () => {
                   <p>{file.name ? file.name : ""}</p>
                   <Button
                     key={index}
-                    danger
+                    type="default"
+                    text="삭제"
+                    onClick={() => handleDeleteJobPosting(file.name)}
                     style={{
                       marginBottom: "7px",
                     }}
-                    type="default"
-                    onClick={() => handleDeleteJobPosting(file.name)}
-                  >
-                    삭제
-                  </Button>
+                  />
                 </div>
               );
             })}
@@ -235,15 +239,15 @@ const CareersCreate = () => {
         <div style={{ textAlign: "center" }}>
           <Button
             htmlType="submit"
+            text="작성"
+            type={`default`}
             style={{
               marginBottom: "40px",
               marginTop: "20px",
               width: "100px",
               height: "40px",
             }}
-          >
-            작성
-          </Button>
+          />
         </div>
       </Form>
     </Container>

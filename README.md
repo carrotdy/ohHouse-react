@@ -1,7 +1,7 @@
 ## ✏️OhHouse Homepage
 https://ohhouse.netlify.app/
 <br/>
-
+<br/>
 ## 💫핵심 기능
 - 반응형 웹사이트 제작
 - firebase 사용하여 로그인/로그아웃, 채용 공고(CRUD) 구현
@@ -96,4 +96,3 @@ typescript: 4.9.5<br/>
 - lodash-es: 4.17.21<br/>
 - styled-components: 6.1.0<br/>
 - antd: 5.10.3<br/>
-- sass: 1.68.0<br/>

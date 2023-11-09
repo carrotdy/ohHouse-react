@@ -7,13 +7,13 @@ import { RoutePath } from "../RoutePath";
 import Button from "../components/Button";
 import { Container, Title } from "../components/Common";
 import { LOCAL_STORAGE_KEY_CART } from "../constants/localstorage/localStorageKeys";
+import { ProductModel } from "../constants/model/ProductModel";
 import { Color } from "../constants/style/Color";
 import {
-	CartState,
-	CartTotalCountState,
-	CartTotalPriceState,
+  CartState,
+  CartTotalCountState,
+  CartTotalPriceState,
 } from "../recoil/CartRecoil";
-import { ProductModel } from "../constants/model/ProductModel";
 import CartProduct from "./CartProduct";
 
 const Cart: React.FunctionComponent = () => {
@@ -42,19 +42,17 @@ const Cart: React.FunctionComponent = () => {
       {cartItem.length ? (
         cartItem.map((item) => <CartProduct key={item.id} data={item} />)
       ) : (
-        <div style={{ padding: "120px 0" }}>
+        <div style={{ padding: "120px 0", textAlign: "center" }}>
           <div style={{ textAlign: "center", marginBottom: "20px" }}>
             장바구니에 담긴 상품이 없습니다.
           </div>
           <Button
             text={"복지몰 보러가기"}
             type={"primary"}
-            size={"small"}
-            width={120}
             onClick={() => {
               navigate(RoutePath.Welfare.path);
             }}
-            style={{ margin: "auto" }}
+            style={{ margin: "auto", height: "40px" }}
           />
         </div>
       )}
@@ -82,17 +80,17 @@ const Cart: React.FunctionComponent = () => {
   );
 };
 
-const ThinLine = styled.div({
-  backgroundColor: Color.Gray50,
-  width: "100%",
-  height: "1px",
-  marginTop: "30px",
-});
+const ThinLine = styled.div`
+  background-color: ${Color.Gray50};
+  width: 100%;
+  height: 1px;
+  margin-top: 30px;
+`;
 
-const ThickLine = styled.div({
-  backgroundColor: Color.Gray30,
-  height: "20px",
-  marginBottom: "20px",
-});
+const ThickLine = styled.div`
+  background-color: ${Color.Gray30};
+  height: 20px;
+  margin-bottom: 20px;
+`;
 
 export default Cart;

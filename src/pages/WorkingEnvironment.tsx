@@ -13,14 +13,14 @@ const WorkingEnvironment = () => {
     <>
       <Title
         data-aos="fade-up"
-        style={{ textAlign: "center", marginBottom: "30px" }}
+        style={{ textAlign: "center", marginBottom: "30px", display: "block" }}
       >
         더 나은 오늘을 만들어 가는 당신을
         <br />
         아낌없이 지원합니다
       </Title>
       <TeamCultureConatiner data-aos="fade-up">
-        {data.map((data, i) => {
+        {data.map((data: EmploymentModel.IEmploymentModel, i: number) => {
           return (
             <TeamCulture key={i}>
               <TeamCultureNumber>{data.id}</TeamCultureNumber>

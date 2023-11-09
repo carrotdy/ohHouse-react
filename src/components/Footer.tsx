@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import ScrollToTopButton from "./ScrollToTopButton";
 import { Mobile, Tablet } from "../utils/CssUtil";
+import ScrollToTopButton from "./ScrollToTopButton";
 
 export const Footer: React.FunctionComponent = () => {
   return (
@@ -17,35 +17,38 @@ export const Footer: React.FunctionComponent = () => {
   );
 };
 
-const FooterContainer = styled.footer({
-  maxWidth: "1400px",
-  margin: "auto",
-  padding: "50px 100px",
-  ...Tablet({
+const FooterContainer = styled.footer`
+  max-width: 1400px;
+  margin: auto;
+  padding: 50px 100px;
+  
+  ${Tablet({
     maxWidth: "1150px",
     padding: "50px 45px",
-  }),
-  ...Mobile({
+  })}
+  ${Mobile({
     maxWidth: "768px",
     padding: "30px 20px",
-  }),
-});
+  })}
+`;
 
-const Title = styled.div({
-  fontSize: "20px",
-  fontWeight: "bold",
-  marginBottom: "12px",
-  ...Mobile({
+const Title = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 12px;
+
+  ${Mobile({
     fontSize: "16px",
     marginBottom: "10px",
-  }),
-});
+  })}
+`;
 
-const Contents = styled.div({
-  fontSize: "15px",
-  lineHeight: "22px",
-  ...Mobile({
+const Contents = styled.div`
+  font-size: 15px;
+  line-height: 22px;
+
+  ${Mobile({
     fontSize: "12px",
     lineHeight: "18px",
-  }),
-});
+  })}
+`;

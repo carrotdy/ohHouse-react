@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { SubTitle, Title } from "../components/Common";
 import { TeamCultureSlide } from "../constants/data/TeamCultureSlide";
+import styled from "styled-components";
 
 const EmployeeVoices = () => {
   const sliderRef = useRef<Slider>(null);
@@ -45,7 +46,7 @@ const EmployeeVoices = () => {
   }, []);
 
   return (
-    <>
+    <EmployeeVoicesContainer>
       <Title data-aos="fade-up" style={{ marginBottom: "30px" }}>
         오하우스에서 일 한다는 것
       </Title>
@@ -70,8 +71,85 @@ const EmployeeVoices = () => {
           );
         })}
       </Slider>
-    </>
+    </EmployeeVoicesContainer>
   );
 };
+
+const EmployeeVoicesContainer = styled.div`
+  .slick-slider {
+    height: 614px;
+    width: 100%;
+
+    .slick-list {
+      .slick-track {
+        display: flex;
+        align-items: stretch;
+        width: 400%;
+        transition: transform 0.4s ease;
+
+        .slick-slide {
+          padding: 0;
+          margin: 0 6px;
+          width: calc(25% - 12px);
+
+          img {
+            width: 100%;
+            height: auto;
+          }
+
+          div {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1150px) {
+    .slick-track {
+      height: 640px;
+
+      .slick-slide {
+        width: calc(50% - 12px);
+      }
+    }
+  }
+
+  @media (min-width: 541px) and (max-width: 767px) {
+    .slick-slider {
+      height: 520px;
+      .slick-list {
+        .slick-track {
+          .slick-slide {
+            padding: 0px;
+
+            .slick {
+              padding: 0px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 540px) {
+    .slick-slider {
+      height: 592px;
+      .slick-list {
+        .slick-track {
+          .slick-slide {
+            padding: 0px;
+
+            .slick {
+              padding: 0px;
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default EmployeeVoices;

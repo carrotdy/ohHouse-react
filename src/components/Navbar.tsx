@@ -59,7 +59,11 @@ const Navbar = () => {
               return null;
             }
 
-            return <StyeldLink to={menu.key}>{menu.label}</StyeldLink>;
+            return (
+              <StyledLink key={menu.key} to={menu.key}>
+                {menu.label}
+              </StyledLink>
+            );
           })}
           {user ? (
             <Button type="button" onClick={handleSignOut}>
@@ -81,22 +85,6 @@ const Navbar = () => {
   );
 };
 
-const Nav = styled.div({
-  display: "flex",
-  justifyContent: "space-between",
-  height: "85px",
-  maxWidth: "1400px",
-  margin: "auto",
-  padding: "0 100px",
-  ...Tablet({
-    padding: "0 45px",
-  }),
-  ...Mobile({
-    padding: "0 20px",
-    height: "65px",
-  }),
-});
-
 const NavContainer = styled.div({
   position: "fixed",
   width: "100%",
@@ -104,37 +92,56 @@ const NavContainer = styled.div({
   backgroundColor: Color.Gray10,
 });
 
-const NavItemsContainer = styled.div({
-  display: "flex",
-  alignItems: "center",
-});
+const Nav = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 85px;
+  max-width: 1400px;
+  margin: auto;
+  padding: 0 100px;
 
-const StyeldLink = styled(Link)({
-  fontSize: "16px",
-  fontWeight: "bold",
-  marginLeft: "26px",
-  cursor: "pointer",
-  color: Color.Gray80,
-  textDecorationLine: "none",
-  ...Mobile({
+  ${Tablet({
+    padding: "0 45px",
+  })}
+  ${Mobile({
+    padding: "0 20px",
+    height: "65px",
+  })}
+`;
+
+const NavItemsContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const StyledLink = styled(Link)`
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 26px;
+  cursor: pointer;
+  color: ${Color.Gray80};
+  text-decoration: none;
+
+  ${Mobile({
     fontSize: "10px",
     marginLeft: "12px",
-  }),
-});
+  })}
+`;
 
-const Logo = styled.img({
-  width: "80px",
-  height: "70px",
-  alignSelf: "center",
-  cursor: "pointer",
-  ...Mobile({
+export const Logo = styled.img`
+  width: 80px;
+  height: 70px;
+  align-self: center;
+  cursor: pointer;
+
+  ${Mobile({
     width: "56px",
     height: "50px",
-  }),
-});
+  })}
+`;
 
-const Button = styled.button`
-  background: ${Color.MainClolor};
+export const Button = styled.button`
+  background: ${Color.MainColor};
   color: ${Color.Gray10};
   border: none;
   padding: 12px 16px;

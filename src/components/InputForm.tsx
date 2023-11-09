@@ -1,7 +1,6 @@
-import { RegisterOptions, useFormContext, Controller } from "react-hook-form";
-import { Color } from "../constants/style/Color";
-import { ChangeEvent, Children, ReactNode } from "react";
+import { ChangeEvent } from "react";
 import styled from "styled-components";
+import { Color } from "../constants/style/Color";
 
 interface InputFormProps {
   name: string;
@@ -69,12 +68,12 @@ const InputForm = (props: InputFormProps) => {
   );
 };
 
-const Input = styled.input({
-  width: "100%",
-  padding: "8px",
-  marginTop: "6px",
-  border: `1px solid ${Color.Gray40}`,
-  borderRadius: "4px",
-});
+export const Input = styled.input`
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  border: 1px solid ${Color.Gray40};
+  border-radius: 4px;
+`;
 
 export default InputForm;

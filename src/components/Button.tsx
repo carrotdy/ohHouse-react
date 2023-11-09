@@ -1,71 +1,81 @@
+import { Button as AntdButton } from "antd";
 import { MouseEventHandler } from "react";
-import styled from "styled-components";
-import { Mobile } from "../utils/CssUtil";
-import { mergeClassNames } from "./Common";
+import { Color } from "../constants/style/Color";
 
-type ButtonStyle = {
-  [key: string]: string | number | undefined;
-};
-
-type ButtonProps = {
-  text: string | React.ReactNode;
-  type: "primary" | "normal" | "danger";
-  size: "small" | "medium" | "large";
-  width?: number | string;
-  outline?: boolean;
+interface IButtonProps {
+  text: string;
+  type: "default" | "primary";
   disabled?: boolean;
-  children?: React.ReactNode;
-  hover?: boolean;
-  onClick: MouseEventHandler;
-  margin?: string;
-  style?: ButtonStyle;
+  onClick?: MouseEventHandler;
+  loading?: boolean;
+  icon?: React.ReactNode;
+  htmlType?: "button" | "submit" | "reset";
+  download?: boolean;
+  danger?: boolean;
+  style?: React.CSSProperties;
+}
+
+const buttonStyles = {
+  default: {
+    backgroundColor: Color.Gray10,
+    color: Color.MainColor,
+    borderColor: Color.MainColor,
+  },
+  primary: {
+    backgroundColor: Color.MainColor,
+    color: Color.Gray10,
+    borderColor: Color.MainColor,
+  },
+  disabled: {
+    backgroundColor: Color.Gray30,
+    color: Color.Gray60,
+    borderColor: Color.Gray30,
+  },
 };
 
-const Button: React.FC<ButtonProps> = (props) => {
-  const className = mergeClassNames([
-    "button",
-    props.type,
-    props.size,
-    props.outline ? "outline" : "",
-    props.disabled ? "disabled" : "",
-    props.hover ? "hover" : "",
-  ]);
+const Button: React.FC<IButtonProps> = (props) => {
+  const {
+    text,
+    type,
+    disabled = false,
+    onClick,
+    loading = false,
+    icon,
+    htmlType,
+    download = false,
+    style,
+  } = props;
 
-  let isInProgress = false;
-
-  const buttonStyle = {
-    width: props.width,
-    minWidth: props.width,
-    margin: props.margin,
-    ...props.style,
+  const getButtonStyle = () => {
+    switch (type) {
+      case "default":
+        return disabled ? buttonStyles.disabled : buttonStyles.default;
+      case "primary":
+        return disabled ? buttonStyles.disabled : buttonStyles.primary;
+      default:
+        return buttonStyles.primary;
+    }
   };
 
+  const buttonStyle = getButtonStyle();
+
   return (
-    <ButtonWrapper
-      className={className}
-      style={buttonStyle}
-      onClick={(e) => {
-        if (!props.disabled) {
-          if (!isInProgress) {
-            isInProgress = true;
-            props.onClick(e);
-            isInProgress = false;
-          }
-        } else {
-          e.stopPropagation();
-        }
+    <AntdButton
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
+      loading={loading}
+      icon={icon}
+      htmlType={htmlType}
+      download={download}
+      style={{
+        ...buttonStyle,
+        ...style,
       }}
     >
-      <div style={{ alignItems: "center" }}>{props.text}</div>
-    </ButtonWrapper>
+      {text}
+    </AntdButton>
   );
 };
-
-const ButtonWrapper = styled.div({
-  ...Mobile({
-    fontSize: "8px !important",
-    padding: "5px 10px !important",
-  }),
-});
 
 export default Button;
