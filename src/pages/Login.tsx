@@ -4,7 +4,7 @@ import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { RoutePath } from "../RoutePath";
 import Button from "../components/Button";
-import { Container } from "../components/Common";
+import { Container, Title } from "../components/Common";
 import InputForm from "../components/InputForm";
 import { isLoadingRecoil } from "../recoil/LoadingRecoil";
 
@@ -54,7 +54,7 @@ const Login = () => {
 
   return (
     <Container>
-      <h2>로그인</h2>
+      <Title>로그인</Title>
       <FormContainer>
         <form onSubmit={handleSubmit}>
           <InputForm

@@ -10,11 +10,11 @@ import styled from "styled-components";
 import { RoutePath } from "../RoutePath";
 import Button from "../components/Button";
 import {
-	BorderBottomLineGray30,
-	BorderBottomLineGray80,
-	Container,
-	SubTitle,
-	Title,
+  BorderBottomLineGray30,
+  BorderBottomLineGray80,
+  Container,
+  SubTitle,
+  Title,
 } from "../components/Common";
 import { JobPostingModel } from "../constants/model/JobPostingModel";
 import { Color } from "../constants/style/Color";
@@ -96,10 +96,13 @@ const Careers: React.FunctionComponent = () => {
               <li key={item.postId} style={{ listStyle: "none" }}>
                 <JobPostingContainer
                   onClick={() => {
-                    navigate(RoutePath.CareersDetail.path, {
-                      state: { ...item },
-                    });
+                    if (!item.isClose) {
+                      navigate(RoutePath.CareersDetail.path, {
+                        state: { ...item },
+                      });
+                    }
                   }}
+                  style={{ cursor: item.isClose ? "auto" : "pointer" }}
                 >
                   <TextContainer>
                     <PostingTitle>{item.title}</PostingTitle>
@@ -126,7 +129,7 @@ const Careers: React.FunctionComponent = () => {
                   </TextContainer>
                   <Button
                     text={item.isClose ? `채용마감` : `채용중`}
-                    type={`primary`}
+                    type={`default`}
                     disabled={item.isClose}
                     onClick={() => {
                       navigate(RoutePath.CareersDetail.path, {
@@ -154,6 +157,7 @@ const CareerSection = styled.section`
 
 const TextContainer = styled.div`
   margin-right: 36px;
+
   ${Mobile({
     margin: "0",
   })}
@@ -166,6 +170,7 @@ const PostingTitle = styled.h2`
   display: inline-block;
   line-height: 40px;
   margin: 0px;
+
   ${Mobile({
     fontSize: "16px",
     lineHeight: "26px",
@@ -181,7 +186,7 @@ const JobPostingContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 52px 0;
-  cursor: pointer;
+
   ${Mobile({
     display: "grid",
     padding: "40px 0",

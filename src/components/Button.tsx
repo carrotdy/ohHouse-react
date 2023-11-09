@@ -1,5 +1,6 @@
 import { Button as AntdButton } from "antd";
 import { MouseEventHandler } from "react";
+import styled from "styled-components";
 import { Color } from "../constants/style/Color";
 
 interface IButtonProps {
@@ -60,7 +61,7 @@ const Button: React.FC<IButtonProps> = (props) => {
   const buttonStyle = getButtonStyle();
 
   return (
-    <AntdButton
+    <StyledButton
       type={type}
       disabled={disabled}
       onClick={onClick}
@@ -74,8 +75,27 @@ const Button: React.FC<IButtonProps> = (props) => {
       }}
     >
       {text}
-    </AntdButton>
+    </StyledButton>
   );
 };
+
+const StyledButton = styled(AntdButton)`
+  &:hover {
+    background-color: ${(props) =>
+      props.type === "default" && !props.disabled
+        ? Color.MainColor
+        : ""} !important;
+
+    color: ${(props) =>
+      props.type === "default" && !props.disabled
+        ? Color.Gray10
+        : ""} !important;
+
+    border-color: ${(props) =>
+      props.type === "default" && !props.disabled
+        ? Color.MainColor
+        : ""} !important;
+  }
+`;
 
 export default Button;

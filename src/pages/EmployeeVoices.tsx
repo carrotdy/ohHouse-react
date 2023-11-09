@@ -16,7 +16,7 @@ const EmployeeVoices = () => {
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 1200,
+    autoplaySpeed: 2200,
     responsive: [
       {
         breakpoint: 1151,
@@ -47,7 +47,7 @@ const EmployeeVoices = () => {
 
   return (
     <EmployeeVoicesContainer>
-      <Title data-aos="fade-up" style={{ marginBottom: "30px" }}>
+      <Title data-aos="fade-up" style={{ marginBottom: "20px" }}>
         오하우스에서 일 한다는 것
       </Title>
       <SubTitle data-aos="fade-up">

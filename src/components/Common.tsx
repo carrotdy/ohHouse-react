@@ -52,8 +52,10 @@ const SubTitle = styled.div`
   font-weight: 400;
   line-height: 26px;
   margin: 20px 0;
+
   ${Mobile({
     fontSize: "10px",
+    lineHeight: "18px",
   })}
 `;
 
@@ -68,10 +70,9 @@ export const ScrollToTop = () => {
 };
 
 export {
-	BorderBottomLineGray30,
-	BorderBottomLineGray80,
-	Container,
-	SubTitle,
-	Title
+  BorderBottomLineGray30,
+  BorderBottomLineGray80,
+  Container,
+  SubTitle,
+  Title,
 };
-

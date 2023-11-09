@@ -31,15 +31,14 @@ const WelfareProduct: React.FC<IProps> = ({ data, index }) => {
         <BadgeContent>{index + 1}</BadgeContent>
       </Badge>
       <ShoppingCartButton>
+        <Company>{company}</Company>
         <ShoppingCartSVG
           width={28}
           height={28}
           fill={isAlreadyCart ? Color.Gray40 : Color.Gray80}
           onClick={addToCart}
-          style={{ position: "absolute", bottom: 10, right: 10 }}
         />
       </ShoppingCartButton>
-      <Company>{company}</Company>
       <ProductTitle>{title}</ProductTitle>
       <ProductPoint>{`${point.toLocaleString()} 원`}</ProductPoint>
     </ProductContainer>
@@ -88,7 +87,10 @@ const ShoppingCartButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
 `;
 
 export default WelfareProduct;

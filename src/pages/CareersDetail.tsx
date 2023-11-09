@@ -8,10 +8,10 @@ import styled from "styled-components";
 import { RoutePath } from "../RoutePath";
 import Button from "../components/Button";
 import {
-	BorderBottomLineGray80,
-	Container,
-	SubTitle,
-	Title,
+  BorderBottomLineGray80,
+  Container,
+  SubTitle,
+  Title,
 } from "../components/Common";
 import { JobPostingModel } from "../constants/model/JobPostingModel";
 import { Color } from "../constants/style/Color";
@@ -61,13 +61,15 @@ const CareersDetail: React.FunctionComponent = () => {
         </SubTitle>
       </SubTitleContainer>
       <DepartmentTagsContainer>
-        {career.department.map((depart: string, index: number) => {
-          return (
-            <Tag key={`${career.postId} + ${index}`} color="geekblue">
-              {depart}
-            </Tag>
-          );
-        })}
+        <div>
+          {career.department.map((depart: string, index: number) => {
+            return (
+              <Tag key={`${career.postId} + ${index}`} color="geekblue">
+                {depart}
+              </Tag>
+            );
+          })}
+        </div>
         {user?.uid === career.userUid && (
           <Button
             text={`수정`}
@@ -98,7 +100,7 @@ const CareersDetail: React.FunctionComponent = () => {
               icon={<FileAddOutlined />}
               text={fileName}
               onClick={() => fileDownLoad(fileName)}
-              style={{ marginBottom: "6px" }}
+              style={{ marginBottom: "6px", borderColor: Color.Gray60 }}
             />
           ))}
         </AttachmentsContainer>

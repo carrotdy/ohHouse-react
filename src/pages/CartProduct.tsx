@@ -34,14 +34,14 @@ const CartProduct: React.FC<IProduct> = ({ data }) => {
     <ProductContainer>
       <ProductImage src={image} />
       <ProductInfo>
-        <Title>{title}</Title>
+        <ProductTitle>{title}</ProductTitle>
         <ProductCompany>{company}</ProductCompany>
       </ProductInfo>
       <ProductActions>
         <ProductPrice>{`${point.toLocaleString()} 원`}</ProductPrice>
         <Button
           text={"삭제"}
-          type={"primary"}
+          type={"default"}
           onClick={handleClickDelete}
           style={{ width: "60px" }}
         />
@@ -65,6 +65,14 @@ const ProductImage = styled.img`
 
 const ProductInfo = styled.div`
   flex: 1;
+  margin-right: 20px;
+`;
+
+const ProductTitle = styled.span`
+  font-size: 16px;
+  ${Mobile({
+    fontSize: "10px",
+  })}
 `;
 
 const ProductCompany = styled.div`
