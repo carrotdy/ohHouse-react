@@ -4,12 +4,36 @@ import styled from "styled-components";
 import { RoutePath } from "../RoutePath";
 import { Color } from "../constants/style/Color";
 import { MainLogoPNG } from "../images/png";
+import { NavbarModel } from "../model/NavbarModel";
 import { Mobile, Tablet } from "../utils/CssUtil";
 
 const Navbar = () => {
   const auth = getAuth();
   const user = auth.currentUser;
   const navigate = useNavigate();
+
+  const Pages: Array<NavbarModel.INavbar> = [
+    {
+      key: "/",
+      label: "회사소개",
+    },
+    {
+      key: "/team-culture",
+      label: "팀문화",
+    },
+    {
+      key: "/careers",
+      label: "채용",
+    },
+    {
+      key: "/welfare",
+      label: "복지몰",
+    },
+    {
+      key: "/cart",
+      label: "장바구니",
+    },
+  ];
 
   const handleSignOut = async () => {
     try {
@@ -30,15 +54,13 @@ const Navbar = () => {
           }}
         />
         <NavItemsContainer>
-          <StyeldLink to="/">회사소개</StyeldLink>
-          <StyeldLink to="/views/team-culture">팀문화</StyeldLink>
-          <StyeldLink to="/views/careers">채용</StyeldLink>
-          {user && (
-            <>
-              <StyeldLink to="/views/welfare">복지몰</StyeldLink>
-              <StyeldLink to="/views/cart">장바구니</StyeldLink>
-            </>
-          )}
+          {Pages.map((menu: NavbarModel.INavbar) => {
+            if (!user && (menu.key === "/welfare" || menu.key === "/cart")) {
+              return null;
+            }
+
+            return <StyeldLink to={menu.key}>{menu.label}</StyeldLink>;
+          })}
           {user ? (
             <Button type="button" onClick={handleSignOut}>
               로그아웃

@@ -15,39 +15,39 @@ export class RoutePath {
     element: <회사소개 />,
   };
   static readonly 팀문화 = {
-    path: "/views/team-culture",
+    path: "/team-culture",
     element: <팀문화 />,
   };
   static readonly 팀문화직원소리 = {
-    path: "/views/team-culture",
+    path: "/team-culture",
     element: <팀문화직원소리 />,
   };
   static readonly 채용 = {
-    path: "/views/careers",
+    path: "/careers",
     element: <채용 />,
   };
   static readonly 채용작성 = {
-    path: "/views/CreateCareer",
+    path: "/CreateCareer",
     element: <채용작성 />,
   };
   static readonly 채용수정 = {
-    path: "/views/EditCareer",
+    path: "/EditCareer",
     element: <채용수정 />,
   };
   static readonly 채용상세 = {
-    path: "/views/careerDetail",
+    path: "/careerDetail",
     element: <채용상세 />,
   };
   static readonly 복지몰 = {
-    path: "/views/welfare",
+    path: "/welfare",
     element: <복지몰 />,
   };
   static readonly 장바구니 = {
-    path: "/views/cart",
+    path: "/cart",
     element: <장바구니 />,
   };
   static readonly 로그인 = {
-    path: "/views/login",
+    path: "/login",
     element: <로그인 />,
   };
 }
