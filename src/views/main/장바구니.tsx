@@ -63,7 +63,7 @@ const 장바구니: React.FunctionComponent = () => {
           <ThinLine />
           <ThickLine />
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span>상품 갯수</span>
+            <span>상품 개수</span>
             <div>{`${totalCount}개`}</div>
           </div>
           <div

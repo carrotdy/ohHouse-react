@@ -102,7 +102,13 @@ const 채용: React.FunctionComponent = () => {
 
             return (
               <div key={item.postId}>
-                <JobPostingContainer>
+                <JobPostingContainer
+                  onClick={() => {
+                    navigate(RoutePath.채용상세.path, {
+                      state: { ...item },
+                    });
+                  }}
+                >
                   <TextContainer>
                     <PostingTitle>{item.title}</PostingTitle>
                     <SubTitleContainer>
@@ -177,6 +183,7 @@ const JobPostingContainer = styled.div({
   justifyContent: "space-between",
   alignItems: "center",
   padding: "60px 0",
+  cursor: "pointer",
   ...Mobile({
     display: "grid",
     padding: "40px 0",
