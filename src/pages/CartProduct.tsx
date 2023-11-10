@@ -82,7 +82,7 @@ const ProductCompany = styled.div`
 `;
 
 const ProductActions = styled.div`
-  margin-left: auto;
+  text-align: right;
 `;
 
 const ProductPrice = styled.div`

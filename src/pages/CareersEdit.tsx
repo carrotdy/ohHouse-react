@@ -259,7 +259,7 @@ const CareersEdit = () => {
                       alignItems: "center",
                     }}
                   >
-                    <p>{name ? name : ""}</p>
+                    <p>{name || ""}</p>
                     <Button
                       key={index}
                       type="default"
