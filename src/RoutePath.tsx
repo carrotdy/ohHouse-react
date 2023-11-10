@@ -18,7 +18,7 @@ export class RoutePath {
     path: "/team-culture",
     element: <TeamCulture />,
   };
-  static readonly 팀문화직원소리 = {
+  static readonly EmployeeVoices = {
     path: "/team-culture",
     element: <EmployeeVoices />,
   };

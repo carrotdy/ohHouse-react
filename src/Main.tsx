@@ -14,8 +14,8 @@ const Main = () => {
         element={RoutePath.TeamCulture.element}
       />
       <Route
-        path={RoutePath.팀문화직원소리.path}
-        element={RoutePath.팀문화직원소리.element}
+        path={RoutePath.EmployeeVoices.path}
+        element={RoutePath.EmployeeVoices.element}
       />
       <Route
         path={RoutePath.Careers.path}
