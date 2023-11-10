@@ -9,7 +9,7 @@ https://ohhouse.netlify.app/
 - firebase storage 파일 다운로드
 - 복지몰 상품 무한스크롤 구현
 - Recoil을 활용한 장바구니 전역 상태 관리
-- Button, InputForm 공통 컴포넌트 관리
+- Button, InputForm 등 공통 컴포넌트 관리
 <br/>
 <br/>
 
