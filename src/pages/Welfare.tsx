@@ -22,7 +22,7 @@ const Welfare: React.FunctionComponent = () => {
     const currentHeight =
       document.documentElement.scrollTop + window.innerHeight;
 
-    if (currentHeight + window.innerHeight >= scrollHeight - 140) {
+    if (currentHeight >= scrollHeight - 140) {
       setIsLoading(true);
       setTimeout(() => {
         setVisibleItems((pre) => pre + ITEMS_PER_PAGE);
