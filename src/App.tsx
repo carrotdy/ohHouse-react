@@ -12,14 +12,11 @@ AOS.init({
 });
 
 const App: React.FC = () => {
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  const minWidth = isMobile ? {} : { minWidth: 1440 };
-
   return (
     <BrowserRouter>
       <RecoilRoot>
         <AuthProvider>
-          <Layout {...minWidth}>
+          <Layout>
             <ScrollToTop />
             <Main />
           </Layout>
