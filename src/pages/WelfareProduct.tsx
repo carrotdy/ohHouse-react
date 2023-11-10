@@ -1,6 +1,7 @@
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { ShoppingCartSVG } from "../assets/images/svg";
+import { LOCAL_STORAGE_KEY_CART } from "../constants/localstorage/localStorageKeys";
 import { ProductModel } from "../constants/model/ProductModel";
 import { Color } from "../constants/style/Color";
 import { CartState } from "../recoil/CartRecoil";
@@ -16,11 +17,19 @@ const WelfareProduct: React.FC<IProps> = ({ data, index }) => {
   const [cartItem, setCartItem] =
     useRecoilState<Array<ProductModel.IProductModel>>(CartState);
 
-  const isAlreadyCart = cartItem.some((item) => item.id === data.id);
+  const isAdded = cartItem.some((item) => item.id === data.id);
 
-  const addToCart = () => {
-    if (!isAlreadyCart) {
-      setCartItem((prev) => [...prev, data]);
+  const handleToggleCart = () => {
+    if (isAdded) {
+      //찜 해제
+      const updatedCart = cartItem.filter((item) => item.id !== data.id);
+      setCartItem(updatedCart);
+      localStorage.setItem(LOCAL_STORAGE_KEY_CART, JSON.stringify(updatedCart));
+    } else {
+      //찜하기
+      const updatedCart = [...cartItem, data];
+      setCartItem(updatedCart);
+      localStorage.setItem(LOCAL_STORAGE_KEY_CART, JSON.stringify(updatedCart));
     }
   };
 
@@ -35,8 +44,8 @@ const WelfareProduct: React.FC<IProps> = ({ data, index }) => {
         <ShoppingCartSVG
           width={28}
           height={28}
-          fill={isAlreadyCart ? Color.Gray40 : Color.Gray80}
-          onClick={addToCart}
+          fill={isAdded ? Color.Gray40 : Color.Gray80}
+          onClick={handleToggleCart}
         />
       </ShoppingCartButton>
       <ProductTitle>{title}</ProductTitle>
