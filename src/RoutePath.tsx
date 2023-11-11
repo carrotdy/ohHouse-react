@@ -6,17 +6,17 @@ import Cart from "./pages/Cart";
 import EmployeeVoices from "./pages/EmployeeVoices";
 import IntroCompany from "./pages/IntroCompany";
 import Login from "./pages/Login";
-import TeamCulture from "./pages/TeamCulture";
 import Welfare from "./pages/Welfare";
+import Location from "./pages/Location";
 
 export class RoutePath {
   static readonly IntroCompany = {
     path: "/",
     element: <IntroCompany />,
   };
-  static readonly TeamCulture = {
-    path: "/team-culture",
-    element: <TeamCulture />,
+  static readonly Location = {
+    path: "/location",
+    element: <Location />,
   };
   static readonly EmployeeVoices = {
     path: "/team-culture",

@@ -10,8 +10,8 @@ const Main = () => {
         element={RoutePath.IntroCompany.element}
       />
       <Route
-        path={RoutePath.TeamCulture.path}
-        element={RoutePath.TeamCulture.element}
+        path={RoutePath.Location.path}
+        element={RoutePath.Location.element}
       />
       <Route
         path={RoutePath.EmployeeVoices.path}

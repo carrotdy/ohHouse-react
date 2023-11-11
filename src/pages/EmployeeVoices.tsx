@@ -21,7 +21,7 @@ const EmployeeVoices = () => {
       {
         breakpoint: 1151,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
         },
       },
       {
