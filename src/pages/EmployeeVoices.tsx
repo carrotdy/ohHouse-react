@@ -2,9 +2,9 @@ import { useEffect, useRef } from "react";
 import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import { SubTitle, Title } from "../components/Common";
-import { TeamCultureSlide } from "../constants/data/TeamCultureSlide";
 import styled from "styled-components";
+import { SubTitle, ThinLine, Title } from "../components/Common";
+import { TeamCultureSlide } from "../constants/data/TeamCultureSlide";
 
 const EmployeeVoices = () => {
   const sliderRef = useRef<Slider>(null);
@@ -47,7 +47,8 @@ const EmployeeVoices = () => {
 
   return (
     <EmployeeVoicesContainer>
-      <Title data-aos="fade-up" style={{ marginBottom: "20px" }}>
+      <ThinLine />
+      <Title data-aos="fade-up" style={{ marginTop: "54px" }}>
         오하우스에서 일 한다는 것
       </Title>
       <SubTitle data-aos="fade-up">
