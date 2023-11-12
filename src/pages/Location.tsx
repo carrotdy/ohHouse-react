@@ -1,7 +1,13 @@
-import { Container } from "../components/Common";
+import { Container, Title } from "../components/Common";
+import KakaoMap from "../components/KakaoMap";
 
 const Location = () => {
-  return <Container>kakao 지도로 api 통신 예정</Container>;
+  return (
+    <Container>
+      <Title style={{ marginBottom: "20px" }}>찾아오시는 길</Title>
+      <KakaoMap />
+    </Container>
+  );
 };
 
 export default Location;
