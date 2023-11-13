@@ -7,6 +7,8 @@ https://ohhouse.netlify.app/
 - firebase 사용하여 로그인/로그아웃, 채용 공고(CRUD) 구현
 - react-quill 라이브러리 사용하여 에디터 구현
 - firebase storage 파일 다운로드
+- kakao map 활용하여 회사 위치 구현
+- OpenWeatherMap API를 활용하여 회사 위치 날씨 정보 제공
 - 복지몰 상품 무한스크롤 구현
 - Recoil을 활용한 장바구니 전역 상태 관리
 - Button, InputForm 등 공통 컴포넌트 관리
@@ -23,13 +25,13 @@ https://ohhouse.netlify.app/
       </td>
       <td>
         <span>회사소개</span><br/>
-        <img src="https://github.com/carrotdy/react_oh_house_hompage/assets/83288448/cdd8c718-d0b5-4b0b-a214-420d57ec4d06" width="400" height="220">
+        <img src="https://github.com/carrotdy/react_oh_house_hompage/assets/83288448/fd79749d-9bca-4484-bdff-90eec23aa426" width="400" height="220">
       </td>
     </tr>
     <tr>
       <td>
-        <span>팀문화</span><br/>
-        <img src="https://github.com/carrotdy/react_oh_house_hompage/assets/83288448/a7803ea4-6302-433d-8736-8c6a6f61bc7b" width="400" height="220">
+        <span>위치</span><br/>
+        <img src="https://github.com/carrotdy/react_oh_house_hompage/assets/83288448/e6d541ef-f708-4c67-8cba-9ad0586480a1" width="400" height="220">
       </td>
       <td>
         <span>채용공고</span><br/>
@@ -88,6 +90,7 @@ typescript: 4.9.5<br/>
 - react: 18.2.0<br/>
 - react-hook-form: 7.47.0<br/>
 - react-router-dom: 6.16.0<br/>
+- axios: 1.6.1<br/>
 - firebase: 10.4.0<br/>
 - recoil: 0.7.7<br/>
 - react-quill: 2.0.0<br/>

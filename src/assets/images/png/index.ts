@@ -13,13 +13,14 @@ import Intro5PNG from './intro5.png';
 import Intro6PNG from './intro6.png';
 import Intro7PNG from './intro7.png';
 import Intro8PNG from './intro8.png';
+import pinPNG from './pin.png';
 
 export {
-    MainLogoPNG,
-    IntroContentsPNG,
-    CommunityPNG,
-    StorePNG,
-    ServicePNG,
+	MainLogoPNG,
+	IntroContentsPNG,
+	CommunityPNG,
+	StorePNG,
+	ServicePNG,
 	ArrowPrevPNG,
 	ArrowNextPNG,
 	Intro1PNG,
@@ -29,5 +30,6 @@ export {
 	Intro5PNG,
 	Intro6PNG,
 	Intro7PNG,
-	Intro8PNG
+	Intro8PNG,
+	pinPNG,
 }

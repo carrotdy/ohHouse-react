@@ -11,12 +11,12 @@ const EmployeeVoices = () => {
 
   const settings: Settings = {
     infinite: true,
-    speed: 600,
+    speed: 800,
     slidesToShow: 4,
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 2200,
+    autoplaySpeed: 400,
     responsive: [
       {
         breakpoint: 1151,

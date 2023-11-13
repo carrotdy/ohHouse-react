@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { pinPNG } from "../assets/images/png";
 import {
   defaultLatitude,
   defaultLongitude,
@@ -14,23 +15,26 @@ declare global {
 const KakaoMap: React.FC = () => {
   useEffect(() => {
     const container = document.getElementById("map");
-    const markerPosition = new window.kakao.maps.LatLng(
+    const position = new window.kakao.maps.LatLng(
       defaultLatitude,
       defaultLongitude
     );
 
     if (container) {
       const options = {
-        center: markerPosition,
+        center: position,
         level: 3,
       };
 
       const map = new window.kakao.maps.Map(container, options);
-      const marker = new window.kakao.maps.Marker({
-        position: markerPosition,
+      const customOverlay = new window.kakao.maps.CustomOverlay({
+        position: new window.kakao.maps.LatLng(
+          defaultLatitude,
+          defaultLongitude
+        ),
+        content: `<a href="https://map.kakao.com/link/map/${defaultLatitude},${defaultLongitude}" target="_blank"><img src="${pinPNG}" width="30" height="46" /></a>`,
       });
-
-      marker.setMap(map);
+      customOverlay.setMap(map);
     }
   }, []);
 
