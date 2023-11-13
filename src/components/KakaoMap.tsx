@@ -1,5 +1,5 @@
-import { map } from "lodash-es";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import styled from "styled-components";
 
 declare global {
   interface Window {
@@ -8,31 +8,38 @@ declare global {
 }
 
 const KakaoMap: React.FC = () => {
-  const [latitude, setLatitude] = useState<number | null>(null);
-  const [longitude, setLongitude] = useState<number | null>(null);
-  const [map, setMap] = useState<any>(null);
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setLatitude(position.coords.latitude);
-        setLongitude(position.coords.longitude);
-      });
-    }
-  }, []);
+  const defaultLatitude = 37.5172;
+  const defaultLongitude = 127.0473;
 
   useEffect(() => {
     const container = document.getElementById("map");
-    const options = {
-      center: new window.kakao.maps.LatLng(latitude, longitude),
-      level: 3,
-    };
+    const markerPosition = new window.kakao.maps.LatLng(
+      defaultLatitude,
+      defaultLongitude
+    );
 
-    const createdMap = new window.kakao.maps.Map(container, options);
-    setMap(createdMap);
-  }, [latitude, longitude]);
+    if (container) {
+      const options = {
+        center: markerPosition,
+        level: 3,
+      };
 
-  return <div id="map" style={{ width: "100%", height: "400px" }}></div>;
+      const map = new window.kakao.maps.Map(container, options);
+      const marker = new window.kakao.maps.Marker({
+        position: markerPosition,
+      });
+
+      marker.setMap(map);
+    }
+  }, []);
+
+  return <MapContainer id="map" />;
 };
+
+const MapContainer = styled.div`
+  width: 100%;
+  height: 400px;
+  margin-bottom: 40px;
+`;
 
 export default KakaoMap;
