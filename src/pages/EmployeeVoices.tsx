@@ -16,7 +16,7 @@ const EmployeeVoices = () => {
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 400,
+    autoplaySpeed: 2200,
     responsive: [
       {
         breakpoint: 1151,

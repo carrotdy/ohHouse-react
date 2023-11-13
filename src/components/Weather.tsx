@@ -2,8 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
-	defaultLatitude,
-	defaultLongitude,
+  defaultLatitude,
+  defaultLongitude,
 } from "../constants/commonCoordinates";
 import { WeatherDescriptions as weatherDescKo } from "../constants/data/WeatherDescriptions";
 import { Color } from "../constants/style/Color";
@@ -27,7 +27,7 @@ const Weather = () => {
 
       const weatherKo = weatherDescKo[response.data.weather[0].id];
       const weatherIcon = response.data.weather[0].icon;
-      const weatherIconAdrs = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+      const weatherIconAddress = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
       const temp = Math.round(response.data.main.temp);
 
       setWeatherData({
@@ -36,7 +36,7 @@ const Weather = () => {
         temp_max: response.data.main.temp_max,
         temp_min: response.data.main.temp_min,
         humidity: response.data.main.humidity,
-        icon: weatherIconAdrs,
+        icon: weatherIconAddress,
       });
     } catch (error) {
       console.log("error", error);
