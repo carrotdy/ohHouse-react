@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { BorderBottomLineGray30, SubTitle, Title } from "../components/Common";
-import IntroduceCompany from "../constants/data/IntroduceCompany";
+import { IntroduceCompany } from "../constants/data/IntroduceCompany";
 import { Mobile, Tablet } from "../utils/CssUtil";
 
 const IntroCompanyDetail = () => {

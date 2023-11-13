@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { defaultLatitude, defaultLongitude } from "../constants/commonCoordinates";
 
 declare global {
   interface Window {
@@ -8,8 +9,6 @@ declare global {
 }
 
 const KakaoMap: React.FC = () => {
-  const defaultLatitude = 37.5172;
-  const defaultLongitude = 127.0473;
 
   useEffect(() => {
     const container = document.getElementById("map");

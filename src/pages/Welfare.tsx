@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { SyncLoader } from "react-spinners";
 import styled from "styled-components";
 import { Container, SubTitle, Title } from "../components/Common";
-import DummyData from "../constants/data/DummyData";
+import { DummyData } from "../constants/data/DummyData";
 import { ProductModel } from "../constants/model/ProductModel";
 import { Color } from "../constants/style/Color";
 import WelfareProduct from "./WelfareProduct";
