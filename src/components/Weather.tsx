@@ -2,8 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
-  defaultLatitude,
-  defaultLongitude,
+	defaultLatitude,
+	defaultLongitude,
 } from "../constants/commonCoordinates";
 import { WeatherDescriptions as weatherDescKo } from "../constants/data/WeatherDescriptions";
 import { Color } from "../constants/style/Color";
@@ -25,8 +25,7 @@ const Weather = () => {
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
       );
 
-      const weatherId = response.data.weather[0].id;
-      const weatherKo = weatherDescKo[weatherId];
+      const weatherKo = weatherDescKo[response.data.weather[0].id];
       const weatherIcon = response.data.weather[0].icon;
       const weatherIconAdrs = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
       const temp = Math.round(response.data.main.temp);
@@ -40,7 +39,7 @@ const Weather = () => {
         icon: weatherIconAdrs,
       });
     } catch (error) {
-      setWeatherData((prev) => ({ ...prev, loading: false }));
+      console.log("error", error);
     }
   };
 
@@ -50,14 +49,18 @@ const Weather = () => {
 
   return (
     <WeatherWrapper>
-      <WeatherIcon src={weatherData.icon} alt="weather icon" />
-      <WeatherDescription>{weatherData.description}</WeatherDescription>
-      <Temperature>{weatherData.temp.toFixed(1)}°C</Temperature>
-      <TemperatureRange>
-        최고: {weatherData.temp_max.toFixed(1)}°C / 최저:{" "}
-        {weatherData.temp_min.toFixed(1)}°C
-      </TemperatureRange>
-      <HumidityInfo>습도: {weatherData.humidity}%</HumidityInfo>
+      {weatherData.icon && (
+        <>
+          <WeatherIcon src={weatherData.icon} alt="weather icon" />
+          <WeatherDescription>{weatherData.description}</WeatherDescription>
+          <Temperature>{weatherData.temp.toFixed(1)}°C</Temperature>
+          <TemperatureRange>
+            최고: {weatherData.temp_max.toFixed(1)}°C / 최저:{" "}
+            {weatherData.temp_min.toFixed(1)}°C
+          </TemperatureRange>
+          <HumidityInfo>습도: {weatherData.humidity}%</HumidityInfo>
+        </>
+      )}
     </WeatherWrapper>
   );
 };

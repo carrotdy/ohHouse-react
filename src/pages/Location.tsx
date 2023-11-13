@@ -7,7 +7,7 @@ const Location = () => {
     <Container>
       <Title style={{ marginBottom: "20px" }}>찾아오시는 길</Title>
       <KakaoMap />
-	  <Weather />
+      <Weather />
     </Container>
   );
 };
