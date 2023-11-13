@@ -27,7 +27,7 @@ import {
   image25,
 } from "../../assets/images/png/companyImage"
 
-const DummyData: Array<ProductModel.IProductModel> = [
+export const DummyData: Array<ProductModel.IProductModel> = [
   {
     id: 1,
     point: 329000,
@@ -379,4 +379,3 @@ const DummyData: Array<ProductModel.IProductModel> = [
     image: image25,
   },
 ]
-export default DummyData

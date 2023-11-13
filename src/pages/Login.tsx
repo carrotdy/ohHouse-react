@@ -1,19 +1,17 @@
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { ChangeEvent, useEffect, useState } from "react";
-import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { RoutePath } from "../RoutePath";
 import Button from "../components/Button";
 import { Container, Title } from "../components/Common";
 import InputForm from "../components/InputForm";
-import { isLoadingRecoil } from "../recoil/LoadingRecoil";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const auth = getAuth();
-  const setIsLoading = useSetRecoilState<boolean>(isLoadingRecoil);
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {

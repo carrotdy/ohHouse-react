@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { SyncLoader } from "react-spinners";
 import styled from "styled-components";
 import { Container, SubTitle, Title } from "../components/Common";
-import DummyData from "../constants/data/DummyData";
+import { DummyData } from "../constants/data/DummyData";
 import { ProductModel } from "../constants/model/ProductModel";
 import { Color } from "../constants/style/Color";
 import WelfareProduct from "./WelfareProduct";
@@ -42,25 +42,31 @@ const Welfare: React.FunctionComponent = () => {
 
   return (
     <Container>
-      <Title>오하우스 복지몰</Title>
-      <SubTitle>
-        오하우스 모든 직원들이 복지포인트를 이용하여
-        <br />
-        쇼핑을 할 수 있는 공간입니다
-      </SubTitle>
-      <ProductCardContainer>
-        {DummyData.slice(0, visibleItems).map(
-          (data: ProductModel.IProductModel, index: number) => {
-            return <WelfareProduct key={data.id} data={data} index={index} />;
-          }
-        )}
-      </ProductCardContainer>
-      {isLoading && (
+      {DummyData && (
         <>
-          {visibleItems >= DummyData.length ? null : (
-            <div style={{ textAlign: "center", margin: "10px 0" }}>
-              <SyncLoader color={Color.Orange} />
-            </div>
+          <Title>오하우스 복지몰</Title>
+          <SubTitle>
+            오하우스 모든 직원들이 복지포인트를 이용하여
+            <br />
+            쇼핑을 할 수 있는 공간입니다
+          </SubTitle>
+          <ProductCardContainer>
+            {DummyData.slice(0, visibleItems).map(
+              (data: ProductModel.IProductModel, index: number) => {
+                return (
+                  <WelfareProduct key={data.id} data={data} index={index} />
+                );
+              }
+            )}
+          </ProductCardContainer>
+          {isLoading && (
+            <>
+              {visibleItems >= DummyData.length ? null : (
+                <div style={{ textAlign: "center", margin: "10px 0" }}>
+                  <SyncLoader color={Color.Orange} />
+                </div>
+              )}
+            </>
           )}
         </>
       )}

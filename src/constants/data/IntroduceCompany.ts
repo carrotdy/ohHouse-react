@@ -1,7 +1,7 @@
 import { CommunityPNG, IntroContentsPNG, ServicePNG, StorePNG } from "../../assets/images/png";
 import { CompanyModel } from "../model/CompanyModel";
 
-const IntroduceCompany: Array<CompanyModel.ICompanyModel> = [
+export const IntroduceCompany: Array<CompanyModel.ICompanyModel> = [
   {
     index: 0,
     title: `공간을 꾸미는 유저들의 사례가\n가득한 콘텐츠`,
@@ -27,5 +27,3 @@ const IntroduceCompany: Array<CompanyModel.ICompanyModel> = [
     image: ServicePNG,
   },
 ]
-
-export default IntroduceCompany

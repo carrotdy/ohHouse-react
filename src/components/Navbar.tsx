@@ -2,9 +2,9 @@ import { getAuth } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { RoutePath } from "../RoutePath";
-import { Color } from "../constants/style/Color";
 import { MainLogoPNG } from "../assets/images/png";
 import { NavbarModel } from "../constants/model/NavbarModel";
+import { Color } from "../constants/style/Color";
 import { Mobile, Tablet } from "../utils/CssUtil";
 
 const Navbar = () => {
@@ -18,8 +18,8 @@ const Navbar = () => {
       label: "회사소개",
     },
     {
-      key: "/team-culture",
-      label: "팀문화",
+      key: "/location",
+      label: "위치",
     },
     {
       key: "/careers",

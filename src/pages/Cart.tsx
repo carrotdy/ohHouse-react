@@ -2,17 +2,15 @@ import { isEmpty } from "lodash-es";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import styled from "styled-components";
 import { RoutePath } from "../RoutePath";
 import Button from "../components/Button";
-import { Container, Title } from "../components/Common";
+import { Container, ThickLine, ThinLine, Title } from "../components/Common";
 import { LOCAL_STORAGE_KEY_CART } from "../constants/localstorage/localStorageKeys";
 import { ProductModel } from "../constants/model/ProductModel";
-import { Color } from "../constants/style/Color";
 import {
-  CartState,
-  CartTotalCountState,
-  CartTotalPriceState,
+	CartState,
+	CartTotalCountState,
+	CartTotalPriceState,
 } from "../recoil/CartRecoil";
 import CartProduct from "./CartProduct";
 
@@ -79,18 +77,5 @@ const Cart: React.FunctionComponent = () => {
     </Container>
   );
 };
-
-const ThinLine = styled.div`
-  background-color: ${Color.Gray50};
-  width: 100%;
-  height: 1px;
-  margin-top: 30px;
-`;
-
-const ThickLine = styled.div`
-  background-color: ${Color.Gray30};
-  height: 20px;
-  margin-bottom: 20px;
-`;
 
 export default Cart;

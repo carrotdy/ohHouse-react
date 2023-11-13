@@ -1,15 +1,16 @@
 import { User } from "firebase/auth";
 import { ReactNode, useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { ClipLoader } from "react-spinners";
+import styled from "styled-components";
+import { Color } from "../constants/style/Color";
 import { auth } from "../firebase";
 import { AuthContext } from "./AuthContext";
-import { LoadingPage, isLoadingRecoil } from "../recoil/LoadingRecoil";
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useRecoilState<boolean>(isLoadingRecoil);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const subscribe = auth.onAuthStateChanged((fbUser) => {
@@ -20,8 +21,21 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   }, []);
 
   if (isLoading) {
-    return <LoadingPage />;
+    return (
+      <LoadingBar>
+        <ClipLoader color={Color.Orange} />
+      </LoadingBar>
+    );
   }
 
   return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
 };
+
+const LoadingBar = styled.div({
+  textAlign: "center",
+  margin: "10px 0",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  height: "100vh",
+});

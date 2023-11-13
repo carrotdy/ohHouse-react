@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Color } from "../constants/style/Color";
 import { Mobile, Tablet } from "../utils/CssUtil";
 
-const Container = styled.div`
+export const Container = styled.div`
   max-width: 1400px;
   margin: auto;
   padding: 150px 100px 0 100px;
@@ -19,17 +19,17 @@ const Container = styled.div`
   })}
 `;
 
-const BorderBottomLineGray30 = styled.div`
+export const BorderBottomLineGray30 = styled.div`
   border-bottom: 1px solid ${Color.Gray30};
   width: 100%;
 `;
 
-const BorderBottomLineGray80 = styled.div`
+export const BorderBottomLineGray80 = styled.div`
   border-bottom: 1px solid ${Color.Gray80};
   width: 100%;
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
   color: ${Color.Gray80};
   font-size: 28px;
   font-weight: 700;
@@ -47,7 +47,7 @@ const Title = styled.div`
   })}
 `;
 
-const SubTitle = styled.div`
+export const SubTitle = styled.div`
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
@@ -59,6 +59,19 @@ const SubTitle = styled.div`
   })}
 `;
 
+export const ThinLine = styled.div`
+  background-color: ${Color.Gray50};
+  width: 100%;
+  height: 1px;
+  margin-top: 30px;
+`;
+
+export const ThickLine = styled.div`
+  background-color: ${Color.Gray30};
+  height: 20px;
+  margin-bottom: 20px;
+`;
+
 export const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -67,12 +80,4 @@ export const ScrollToTop = () => {
   }, [pathname]);
 
   return null;
-};
-
-export {
-  BorderBottomLineGray30,
-  BorderBottomLineGray80,
-  Container,
-  SubTitle,
-  Title,
 };
